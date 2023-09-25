@@ -5,7 +5,8 @@ using UnityEngine;
 public class enemyscript : MonoBehaviour
 {
     public string playerTag = "Player";
-    public float moveSpeed = 5f;
+    public float speed = 1000f;
+    public float movespeed = 5f;
     Animator animator;
 
     private Transform playerTransform;
@@ -20,14 +21,18 @@ public class enemyscript : MonoBehaviour
 
     private void Update()
     {
+        Vector3 viewdirection = new Vector3(playerTransform.position.x - transform.position.x, 0, playerTransform.position.z - transform.position.z);
         if (rb.velocity.magnitude >= 0.1)
         {
+            transform.forward = viewdirection;
             animator.SetBool("isWalking", true);
         }
         else
         {
             animator.SetBool("isWalking", false);
         }
+        
+        SpeedControl();
     }
 
     private void FixedUpdate()
@@ -39,7 +44,19 @@ public class enemyscript : MonoBehaviour
             direction.Normalize();
 
             // Apply the movement force to the enemy using Rigidbody
-            rb.velocity = direction * moveSpeed;
+            rb.AddForce(direction.x * speed * Time.deltaTime, 0, direction.z * speed * Time.deltaTime);
+        }
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > movespeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * movespeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
 }
