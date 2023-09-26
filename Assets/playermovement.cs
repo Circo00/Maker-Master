@@ -11,6 +11,11 @@ public class playermovement : MonoBehaviour
     public float rotationSpeed = 5f;
     public float movespeed = 10f;
 
+    public float attackrange;
+    public int attackdamage;
+    public float spreadangle = 30f;
+    public int numrays = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +26,7 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.DrawLine(transform.position, transform.forward * attackrange, Color.red);
         float horizontal_value = joystick.Horizontal;
         float vertical_value = joystick.Vertical;
 
@@ -35,12 +40,15 @@ public class playermovement : MonoBehaviour
         
         if(Input.touchCount > 1)
         {
+            Attack();
             animator.SetBool("isAttacking", true);
         }
         else
         {
             animator.SetBool("isAttacking", false);
         }
+
+        
 
         SpeedControl();
         AnimationControl();
@@ -67,6 +75,40 @@ public class playermovement : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", false);
+        }
+    }
+
+    private void Attack()
+    {
+        // Calculate the angle between each ray
+        float angleStep = spreadangle / (numrays - 1);
+
+        // Shoot multiple rays in different directions
+        for (int i = 0; i < numrays; i++)
+        {
+            // Calculate the direction based on the current angle
+            float currentAngle = -spreadangle / 2f + (angleStep * i);
+            Quaternion rayRotation = Quaternion.Euler(0f, currentAngle, 0f);
+            Vector3 rayDirection = rayRotation * transform.forward;
+
+            // Perform a raycast in the current direction to detect enemies
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, rayDirection, out hit, attackrange))
+            {
+                // Check if the raycast hit an enemy
+                
+                enemyscript enemy = hit.collider.GetComponentInParent<enemyscript>();
+                
+                if (enemy != null)
+                {
+                    // Deal damage to the enemy
+                    
+                    enemy.TakeDamage(attackdamage);
+                }
+            }
+
+            // Draw the ray in the scene view for debugging purposes
+            Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
     }
 }

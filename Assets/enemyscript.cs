@@ -11,12 +11,15 @@ public class enemyscript : MonoBehaviour
 
     private Transform playerTransform;
     private Rigidbody rb;
+    public int maxhealth = 100;
+    private int currenthealth;
 
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag(playerTag).transform;
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        currenthealth = maxhealth;
     }
 
     private void Update()
@@ -33,6 +36,9 @@ public class enemyscript : MonoBehaviour
         }
         
         SpeedControl();
+
+        
+
     }
 
     private void FixedUpdate()
@@ -59,4 +65,20 @@ public class enemyscript : MonoBehaviour
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damagepoint)
+    {
+        currenthealth -= damagepoint;
+        Debug.Log("Damage Taken");
+        if (currenthealth <= 0)
+        {
+            Die();
+        }
+    }
+
 }
