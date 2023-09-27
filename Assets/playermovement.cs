@@ -16,6 +16,8 @@ public class playermovement : MonoBehaviour
     public float spreadangle = 30f;
     public int numrays = 5;
 
+    public float attackdelay = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,8 +42,10 @@ public class playermovement : MonoBehaviour
         
         if(Input.touchCount > 1)
         {
-            Attack();
             animator.SetBool("isAttacking", true);
+            Invoke("Attack", attackdelay);
+
+
         }
         else
         {
@@ -82,7 +86,7 @@ public class playermovement : MonoBehaviour
     {
         // Calculate the angle between each ray
         float angleStep = spreadangle / (numrays - 1);
-
+        Debug.Log("Attack!");
         // Shoot multiple rays in different directions
         for (int i = 0; i < numrays; i++)
         {
