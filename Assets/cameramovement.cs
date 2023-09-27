@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameramovement : MonoBehaviour
 {
-    public Camera playercamera;
+    public Transform playercamera;
     public Vector3 offset;
     // Start is called before the first frame update
     void Start()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class playermovement : MonoBehaviour
 {
@@ -114,5 +115,6 @@ public class playermovement : MonoBehaviour
             // Draw the ray in the scene view for debugging purposes
             Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
+        CameraShaker.Instance.ShakeOnce(1f, 5f, .1f, 1f);
     }
 }
