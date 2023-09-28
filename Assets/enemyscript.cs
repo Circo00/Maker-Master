@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class enemyscript : MonoBehaviour
 {
@@ -12,8 +13,15 @@ public class enemyscript : MonoBehaviour
     private Transform playerTransform;
     private Rigidbody rb;
     private Collider childcollider;
-    public int maxhealth = 100;
+    public float maxhealth = 100f;
     private int currenthealth;
+
+    public int attackdamage = 50;
+    GameObject player;
+    playermovement _playermovement;
+
+    public float attackdelay = 0.5f;
+    
 
     private void Start()
     {
@@ -21,7 +29,9 @@ public class enemyscript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         childcollider = GetComponentInChildren<Collider>();
-        currenthealth = maxhealth;
+        currenthealth = (int)maxhealth;
+        player = GameObject.FindGameObjectWithTag(playerTag);
+        _playermovement = player.GetComponent<playermovement>();
     }
 
     private void Update()
@@ -30,6 +40,7 @@ public class enemyscript : MonoBehaviour
         {
             MovementAnimationController();
             SpeedControl();
+            Attack();
         }
         
         
@@ -122,6 +133,32 @@ public class enemyscript : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 0.3f))
+        {
+            
 
+            playermovement player = hit.collider.GetComponentInParent<playermovement>();
+
+            if (player != null && animator.GetBool("isAttacking") == false)
+            {
+                // Deal damage to the enemy
+                animator.SetBool("isAttacking", true);
+                Invoke("DamagePlayer", attackdelay);
+                
+                
+                CameraShaker.Instance.ShakeOnce(.5f, 5f, .05f, .05f);
+            }
+        }
+    }
+
+    private void DamagePlayer()
+    {
+        _playermovement.TakeDamage(attackdamage);
+        animator.SetBool("isAttacking", false);
+
+    }
 
 }

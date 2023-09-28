@@ -19,17 +19,23 @@ public class playermovement : MonoBehaviour
 
     public float attackdelay = 2;
 
+    public float maxhealth = 100f;
+    private int currenthealth;
+    [SerializeField] private Healthbar healthbar;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        currenthealth = (int)maxhealth;
+        healthbar.UpdateHealthbar(maxhealth, currenthealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, transform.forward * attackrange, Color.red);
+        Debug.Log(currenthealth);
         float horizontal_value = joystick.Horizontal;
         float vertical_value = joystick.Vertical;
 
@@ -87,7 +93,7 @@ public class playermovement : MonoBehaviour
     {
         // Calculate the angle between each ray
         float angleStep = spreadangle / (numrays - 1);
-        Debug.Log("Attack!");
+        //Debug.Log("Attack!");
         // Shoot multiple rays in different directions
         for (int i = 0; i < numrays; i++)
         {
@@ -115,6 +121,26 @@ public class playermovement : MonoBehaviour
             // Draw the ray in the scene view for debugging purposes
             Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
-        CameraShaker.Instance.ShakeOnce(1f, 5f, .1f, 1f);
+        CameraShaker.Instance.ShakeOnce(.5f, 5f, .1f, .1f);
     }
+
+    public void TakeDamage(int damagepoint)
+    {
+        currenthealth -= damagepoint;
+        healthbar.UpdateHealthbar(maxhealth, currenthealth);
+        Debug.Log("Damage Taken");
+        if (currenthealth <= 0)
+        {
+            animator.SetBool("isDying", true);
+            Invoke("Die", 2);
+        }
+    }
+
+    private void Die()
+    {
+        rb.AddForce(0, 1, 0);
+    }
+
+    
+
 }
