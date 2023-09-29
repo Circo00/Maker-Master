@@ -21,7 +21,16 @@ public class enemyscript : MonoBehaviour
     playermovement _playermovement;
 
     public float attackdelay = 0.5f;
-    
+
+    //characterflash*******************************************************************************************
+
+    SkinnedMeshRenderer skinnedmeshrenderer;
+    public float blinkintensity;
+    public float blinkduration;
+    float blinktimer;
+
+    //characterflash*******************************************************************************************
+
 
     private void Start()
     {
@@ -32,6 +41,9 @@ public class enemyscript : MonoBehaviour
         currenthealth = (int)maxhealth;
         player = GameObject.FindGameObjectWithTag(playerTag);
         _playermovement = player.GetComponent<playermovement>();
+
+        skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+
     }
 
     private void Update()
@@ -41,11 +53,17 @@ public class enemyscript : MonoBehaviour
             MovementAnimationController();
             SpeedControl();
             Attack();
-        }
-        
-        
 
-        
+            
+
+        }
+
+        blinktimer -= Time.deltaTime;
+        float lerp = Mathf.Clamp01(blinktimer / blinkduration);
+        float intensity = (lerp * blinkintensity) + 1.0f;
+        skinnedmeshrenderer.material.color = Color.white * intensity;
+
+
 
     }
 
@@ -79,6 +97,7 @@ public class enemyscript : MonoBehaviour
     {
         currenthealth -= damagepoint;
         Debug.Log("Damage Taken");
+        blinktimer = blinkduration;
         if (currenthealth <= 0)
         {
             animator.SetBool("isDying", true);

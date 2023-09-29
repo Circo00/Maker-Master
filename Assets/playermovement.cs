@@ -19,17 +19,37 @@ public class playermovement : MonoBehaviour
 
     public float attackdelay = 2;
 
+
+
+    //healthbar************************************************************************************************
+
     public float maxhealth = 100f;
     private int currenthealth;
     [SerializeField] private Healthbar healthbar;
 
+    //healthbar************************************************************************************************
+
+
+    //characterflash*******************************************************************************************
+
+    SkinnedMeshRenderer skinnedmeshrenderer;
+    public float blinkintensity;
+    public float blinkduration;
+    float blinktimer;
+
+    //characterflash*******************************************************************************************
+
+
     // Start is called before the first frame update
     void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         currenthealth = (int)maxhealth;
         healthbar.UpdateHealthbar(maxhealth, currenthealth);
+
+        skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     // Update is called once per frame
@@ -63,6 +83,11 @@ public class playermovement : MonoBehaviour
 
         SpeedControl();
         AnimationControl();
+
+        blinktimer -= Time.deltaTime;
+        float lerp = Mathf.Clamp01(blinktimer / blinkduration);
+        float intensity = (lerp * blinkintensity) + 1.0f;
+        skinnedmeshrenderer.material.color = Color.white * intensity;
     }
 
     private void SpeedControl()
@@ -128,6 +153,9 @@ public class playermovement : MonoBehaviour
     {
         currenthealth -= damagepoint;
         healthbar.UpdateHealthbar(maxhealth, currenthealth);
+
+        blinktimer = blinkduration;
+
         Debug.Log("Damage Taken");
         if (currenthealth <= 0)
         {
