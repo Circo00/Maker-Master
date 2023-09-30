@@ -5,6 +5,7 @@ using EZCameraShake;
 
 public class enemyscript : MonoBehaviour
 {
+    [Header("Movement")]
     public string playerTag = "Player";
     public float speed = 1000f;
     public float movespeed = 5f;
@@ -13,23 +14,15 @@ public class enemyscript : MonoBehaviour
     private Transform playerTransform;
     private Rigidbody rb;
     private Collider childcollider;
-    public float maxhealth = 100f;
-    private int currenthealth;
+    [Space(10)]
 
+    [Header("Attack")]
     public int attackdamage = 50;
     GameObject player;
-    playermovement _playermovement;
+    PlayerHealthScript _healthscript;
 
     public float attackdelay = 0.5f;
 
-    //characterflash*******************************************************************************************
-
-    SkinnedMeshRenderer skinnedmeshrenderer;
-    public float blinkintensity;
-    public float blinkduration;
-    float blinktimer;
-
-    //characterflash*******************************************************************************************
 
 
     private void Start()
@@ -37,43 +30,29 @@ public class enemyscript : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag(playerTag).transform;
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        childcollider = GetComponentInChildren<Collider>();
-        currenthealth = (int)maxhealth;
+        
+        //currenthealth = (int)maxhealth;
         player = GameObject.FindGameObjectWithTag(playerTag);
-        _playermovement = player.GetComponent<playermovement>();
+        _healthscript = player.GetComponent<PlayerHealthScript>();
 
-        skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        //skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
     }
 
     private void Update()
     {
-        if (animator.GetBool("isDying") == false)
-        {
-            MovementAnimationController();
-            SpeedControl();
-            Attack();
-
-            
-
-        }
-
-        blinktimer -= Time.deltaTime;
-        float lerp = Mathf.Clamp01(blinktimer / blinkduration);
-        float intensity = (lerp * blinkintensity) + 1.0f;
-        skinnedmeshrenderer.material.color = Color.white * intensity;
-
-
+        
+        MovementAnimationController();
+        SpeedControl();
+        Attack();
 
     }
 
     private void FixedUpdate()
     {
-        if(animator.GetBool("isDying") == false)
-        {
-            Movement();
-        }
         
+        Movement();
+
     }
 
     private void SpeedControl()
@@ -88,22 +67,7 @@ public class enemyscript : MonoBehaviour
         }
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    public void TakeDamage(int damagepoint)
-    {
-        currenthealth -= damagepoint;
-        Debug.Log("Damage Taken");
-        blinktimer = blinkduration;
-        if (currenthealth <= 0)
-        {
-            animator.SetBool("isDying", true);
-            Invoke("Die", 5);
-        }
-    }
+    
 
     private void Movement()
     {
@@ -132,25 +96,6 @@ public class enemyscript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision.gameObject.tag != "Ground" && animator.GetBool("isDying") == true)
-        {
-            Debug.Log("dhbajkndada");
-            Physics.IgnoreCollision(collision.collider, childcollider, true);
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-
-        if (collision.gameObject.tag != "Ground" && animator.GetBool("isDying") == true)
-        {
-            Debug.Log("dhbajkndada");
-            Physics.IgnoreCollision(collision.collider, childcollider, true);
-        }
-    }
 
     private void Attack()
     {
@@ -159,9 +104,9 @@ public class enemyscript : MonoBehaviour
         {
             
 
-            playermovement player = hit.collider.GetComponentInParent<playermovement>();
+            PlayerHealthScript playerhealth = hit.collider.GetComponentInParent<PlayerHealthScript>();
 
-            if (player != null && animator.GetBool("isAttacking") == false)
+            if (playerhealth != null && animator.GetBool("isAttacking") == false)
             {
                 // Deal damage to the enemy
                 animator.SetBool("isAttacking", true);
@@ -175,7 +120,7 @@ public class enemyscript : MonoBehaviour
 
     private void DamagePlayer()
     {
-        _playermovement.TakeDamage(attackdamage);
+        _healthscript.TakeDamage(attackdamage);
         animator.SetBool("isAttacking", false);
 
     }

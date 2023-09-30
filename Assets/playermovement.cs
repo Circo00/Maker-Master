@@ -7,38 +7,21 @@ public class playermovement : MonoBehaviour
 {
     Rigidbody rb;
     Animator animator;
+
+    [Header("Controller")]
     public Joystick joystick;
     public float speed = 5f;
     public float rotationSpeed = 5f;
     public float movespeed = 10f;
+    [Space(10)]
 
+    [Header("Attacking")]
     public float attackrange;
     public int attackdamage;
     public float spreadangle = 30f;
     public int numrays = 5;
-
     public float attackdelay = 2;
-
-
-
-    //healthbar************************************************************************************************
-
-    public float maxhealth = 100f;
-    private int currenthealth;
-    [SerializeField] private Healthbar healthbar;
-
-    //healthbar************************************************************************************************
-
-
-    //characterflash*******************************************************************************************
-
-    SkinnedMeshRenderer skinnedmeshrenderer;
-    public float blinkintensity;
-    public float blinkduration;
-    float blinktimer;
-
-    //characterflash*******************************************************************************************
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -46,16 +29,12 @@ public class playermovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        currenthealth = (int)maxhealth;
-        healthbar.UpdateHealthbar(maxhealth, currenthealth);
-
-        skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currenthealth);
         float horizontal_value = joystick.Horizontal;
         float vertical_value = joystick.Vertical;
 
@@ -79,15 +58,9 @@ public class playermovement : MonoBehaviour
             animator.SetBool("isAttacking", false);
         }
 
-        
-
         SpeedControl();
         AnimationControl();
 
-        blinktimer -= Time.deltaTime;
-        float lerp = Mathf.Clamp01(blinktimer / blinkduration);
-        float intensity = (lerp * blinkintensity) + 1.0f;
-        skinnedmeshrenderer.material.color = Color.white * intensity;
     }
 
     private void SpeedControl()
@@ -133,13 +106,13 @@ public class playermovement : MonoBehaviour
             {
                 // Check if the raycast hit an enemy
                 
-                enemyscript enemy = hit.collider.GetComponentInParent<enemyscript>();
+                EnemyHealthScript enemyhealth = hit.collider.GetComponentInParent<EnemyHealthScript>();
                 
-                if (enemy != null)
+                if (enemyhealth != null)
                 {
                     // Deal damage to the enemy
                     
-                    enemy.TakeDamage(attackdamage);
+                    enemyhealth.TakeDamage(attackdamage);
                 }
             }
 
@@ -149,25 +122,7 @@ public class playermovement : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(.5f, 5f, .1f, .1f);
     }
 
-    public void TakeDamage(int damagepoint)
-    {
-        currenthealth -= damagepoint;
-        healthbar.UpdateHealthbar(maxhealth, currenthealth);
-
-        blinktimer = blinkduration;
-
-        Debug.Log("Damage Taken");
-        if (currenthealth <= 0)
-        {
-            animator.SetBool("isDying", true);
-            Invoke("Die", 2);
-        }
-    }
-
-    private void Die()
-    {
-        rb.AddForce(0, 1, 0);
-    }
+    
 
     
 
