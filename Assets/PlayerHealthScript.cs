@@ -19,6 +19,10 @@ public class PlayerHealthScript : MonoBehaviour
     public float blinkintensity;
     public float blinkduration;
     float blinktimer;
+    [Space(10)]
+
+    [Header("Scene Management")]
+    public LevelManager levelmanager;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +68,6 @@ public class PlayerHealthScript : MonoBehaviour
 
     private void Die()
     {
-        //rb.AddForce(0, 1, 0);
+        levelmanager.ChangeScene("Main Menu");
     }
 }
