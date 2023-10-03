@@ -33,7 +33,7 @@ public class AttackButtonScript : MonoBehaviour
         if (Time.time - previoustime >= cooldowntime)
         {
             previoustime = Time.time;
-            playerscript.Attack();
+            playerscript.AttackRequest();
         }
         else
         {

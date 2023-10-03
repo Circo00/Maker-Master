@@ -8,7 +8,7 @@ public class PlayButtonScript : MonoBehaviour
 {
     
     Button mybutton;
-    public LevelManager levelmanager;
+    public SceneManagerScript scenemanager;
     
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class PlayButtonScript : MonoBehaviour
 
     void Startgame()
     {
-        levelmanager.ChangeScene("Level1");
+        scenemanager.ChangeScene("Level1");
     }
 
     

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BackToMenu : MonoBehaviour
 {
     Button mybutton;
-    public LevelManager levelmanager;
+    public SceneManagerScript scenemanager;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,6 @@ public class BackToMenu : MonoBehaviour
 
     public void Menu()
     {
-        levelmanager.ChangeScene("Main Menu");
+        scenemanager.ChangeScene("Main Menu");
     }
 }

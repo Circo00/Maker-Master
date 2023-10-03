@@ -22,7 +22,7 @@ public class PlayerHealthScript : MonoBehaviour
     [Space(10)]
 
     [Header("Scene Management")]
-    public LevelManager levelmanager;
+    public SceneManagerScript scenemanager;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +68,6 @@ public class PlayerHealthScript : MonoBehaviour
 
     private void Die()
     {
-        levelmanager.ChangeScene("Main Menu");
+        scenemanager.ChangeScene("Main Menu");
     }
 }

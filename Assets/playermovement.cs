@@ -74,14 +74,20 @@ public class playermovement : MonoBehaviour
         }
     }
 
-    public void Attack()
+    public void AttackRequest()
+    {
+        animator.SetBool("isAttacking", true);
+        Invoke("Attack", attackdelay);
+    }
+
+    private void Attack()
     {
         //Deal damage to the enemy
         // Calculate the angle between each ray
         float angleStep = spreadangle / (numrays - 1);
         // Shoot multiple rays in different directions
         Debug.Log("Attack");
-        CameraShaker.Instance.ShakeOnce(1f, 1f, 1f, 1f);
+        //CameraShaker.Instance.ShakeOnce(1f, 1f, 1f, 1f);
         for (int i = 0; i < numrays; i++)
         {
             // Calculate the direction based on the current angle
@@ -104,8 +110,9 @@ public class playermovement : MonoBehaviour
             // Draw the ray in the scene view for debugging purposes
             Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
-        CameraShaker.Instance.ShakeOnce(1f, 1f, .1f, .1f);
-        
+        CameraShaker.Instance.ShakeOnce(2f, 2f, .1f, .1f);
+        animator.SetBool("isAttacking", false);
+
     }
 
     

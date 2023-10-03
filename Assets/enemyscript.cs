@@ -34,7 +34,7 @@ public class enemyscript : MonoBehaviour
         //currenthealth = (int)maxhealth;
         player = GameObject.FindGameObjectWithTag(playerTag);
         _healthscript = player.GetComponent<PlayerHealthScript>();
-
+        
         //skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class SceneManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
     {
         
     }
-
     public void ChangeScene(string scenename)
     {
         SceneManager.LoadScene(scenename);
