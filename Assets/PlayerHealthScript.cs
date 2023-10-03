@@ -40,7 +40,7 @@ public class PlayerHealthScript : MonoBehaviour
     void Update()
     {
         if (animator.GetBool("isDying") == true) { return; }
-        Debug.Log(currenthealth);
+        //Debug.Log(currenthealth);
         
         blinktimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinktimer / blinkduration);

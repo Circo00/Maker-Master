@@ -45,19 +45,6 @@ public class playermovement : MonoBehaviour
         {
             transform.forward = inputDir;
         }
-        
-        if(Input.touchCount > 1)
-        {
-            animator.SetBool("isAttacking", true);
-            Invoke("Attack", attackdelay);
-
-
-        }
-        else
-        {
-            animator.SetBool("isAttacking", false);
-        }
-
         SpeedControl();
         AnimationControl();
 
@@ -87,27 +74,26 @@ public class playermovement : MonoBehaviour
         }
     }
 
-    private void Attack()
+    public void Attack()
     {
+        //Deal damage to the enemy
         // Calculate the angle between each ray
         float angleStep = spreadangle / (numrays - 1);
-        //Debug.Log("Attack!");
         // Shoot multiple rays in different directions
+        Debug.Log("Attack");
+        CameraShaker.Instance.ShakeOnce(1f, 1f, 1f, 1f);
         for (int i = 0; i < numrays; i++)
         {
             // Calculate the direction based on the current angle
             float currentAngle = -spreadangle / 2f + (angleStep * i);
             Quaternion rayRotation = Quaternion.Euler(0f, currentAngle, 0f);
             Vector3 rayDirection = rayRotation * transform.forward;
-
             // Perform a raycast in the current direction to detect enemies
             RaycastHit hit;
             if (Physics.Raycast(transform.position, rayDirection, out hit, attackrange))
             {
                 // Check if the raycast hit an enemy
-                
                 EnemyHealthScript enemyhealth = hit.collider.GetComponentInParent<EnemyHealthScript>();
-                
                 if (enemyhealth != null)
                 {
                     // Deal damage to the enemy
@@ -115,11 +101,11 @@ public class playermovement : MonoBehaviour
                     enemyhealth.TakeDamage(attackdamage);
                 }
             }
-
             // Draw the ray in the scene view for debugging purposes
             Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
-        CameraShaker.Instance.ShakeOnce(.5f, 5f, .1f, .1f);
+        CameraShaker.Instance.ShakeOnce(1f, 1f, .1f, .1f);
+        
     }
 
     
