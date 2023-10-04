@@ -21,7 +21,20 @@ public class playermovement : MonoBehaviour
     public float spreadangle = 30f;
     public int numrays = 5;
     public float attackdelay = 2;
-    
+    [Space(10)]
+
+    [Header("Ranged Attack")]
+    public Transform shootpos;
+    public GameObject shootable;
+    private Rigidbody shootablerb;
+    public float shootableforce = 1000f;
+    [Space(10)]
+
+
+    [Header("Repeated Ranged Attack")]
+    public float firingrate = 0.1f;
+    public int shootablecount = 10;
+    float firetimer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +42,8 @@ public class playermovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+
+        shootablerb = shootable.GetComponent<Rigidbody>();
         
     }
 
@@ -113,6 +128,29 @@ public class playermovement : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(2f, 2f, .1f, .1f);
         animator.SetBool("isAttacking", false);
 
+        RepeatedRangedAttack();
+
+    }
+
+    private void RangedAttack()
+    {
+        GameObject spawnedshootable = Instantiate(shootable, shootpos.position, shootpos.rotation);
+        Rigidbody shootablerb = spawnedshootable.GetComponent<Rigidbody>();
+        shootablerb.AddRelativeForce(0, 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
+
+    }
+
+    private void RepeatedRangedAttack()
+    {
+        int shotshootablecount = 0;
+        while (shotshootablecount < shootablecount)
+        {
+            Invoke("RangedAttack", shotshootablecount * 0.1f);
+            shotshootablecount += 1;
+        }
+        
+
+        
     }
 
     
