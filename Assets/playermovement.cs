@@ -28,6 +28,7 @@ public class playermovement : MonoBehaviour
     public GameObject shootable;
     private Rigidbody shootablerb;
     public float shootableforce = 1000f;
+    public float shootingoffset = 10f;
     [Space(10)]
 
 
@@ -101,7 +102,7 @@ public class playermovement : MonoBehaviour
         // Calculate the angle between each ray
         float angleStep = spreadangle / (numrays - 1);
         // Shoot multiple rays in different directions
-        Debug.Log("Attack");
+        
         //CameraShaker.Instance.ShakeOnce(1f, 1f, 1f, 1f);
         for (int i = 0; i < numrays; i++)
         {
@@ -136,7 +137,7 @@ public class playermovement : MonoBehaviour
     {
         GameObject spawnedshootable = Instantiate(shootable, shootpos.position, shootpos.rotation);
         Rigidbody shootablerb = spawnedshootable.GetComponent<Rigidbody>();
-        shootablerb.AddRelativeForce(0, 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
+        shootablerb.AddRelativeForce(Random.Range(shootingoffset, -shootingoffset), 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
 
     }
 
@@ -145,7 +146,7 @@ public class playermovement : MonoBehaviour
         int shotshootablecount = 0;
         while (shotshootablecount < shootablecount)
         {
-            Invoke("RangedAttack", shotshootablecount * 0.1f);
+            Invoke("RangedAttack", shotshootablecount * firingrate);
             shotshootablecount += 1;
         }
         

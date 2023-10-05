@@ -37,7 +37,7 @@ public class AttackButtonScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cooldown in progress");
+            //Debug.Log("Cooldown in progress");
         }
 
 
