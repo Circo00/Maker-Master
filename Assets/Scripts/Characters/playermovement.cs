@@ -37,6 +37,9 @@ public class playermovement : MonoBehaviour
     public int shootablecount = 10;
     float firetimer;
 
+    private Node topnode;
+    private bool treeenabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +48,20 @@ public class playermovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         shootablerb = shootable.GetComponent<Rigidbody>();
-        
+        ConstructBehaviourTree();
+
+
+    }
+
+    private void ConstructBehaviourTree()
+    {
+        EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this);
+        RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
+        MeleeAttackNode meleeattacknode = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
+        //StartMeleeAttackNode startmeleeattacknode = new StartMeleeAttackNode(attackdelay, animator);
+
+        topnode = new Sequence(new List<Node> {meleeattacknode, rangedattacknode, endofsequencenode});;
+
     }
 
     // Update is called once per frame
@@ -63,6 +79,11 @@ public class playermovement : MonoBehaviour
         }
         SpeedControl();
         AnimationControl();
+
+        if (treeenabled)
+        {
+            topnode.Evaluate();
+        }
 
     }
 
@@ -90,48 +111,6 @@ public class playermovement : MonoBehaviour
         }
     }
 
-    public void AttackRequest()
-    {
-        animator.SetBool("isAttacking", true);
-        Invoke("Attack", attackdelay);
-    }
-
-    private void Attack()
-    {
-        //Deal damage to the enemy
-        // Calculate the angle between each ray
-        float angleStep = spreadangle / (numrays - 1);
-        // Shoot multiple rays in different directions
-        
-        //CameraShaker.Instance.ShakeOnce(1f, 1f, 1f, 1f);
-        for (int i = 0; i < numrays; i++)
-        {
-            // Calculate the direction based on the current angle
-            float currentAngle = -spreadangle / 2f + (angleStep * i);
-            Quaternion rayRotation = Quaternion.Euler(0f, currentAngle, 0f);
-            Vector3 rayDirection = rayRotation * transform.forward;
-            // Perform a raycast in the current direction to detect enemies
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, rayDirection, out hit, attackrange))
-            {
-                // Check if the raycast hit an enemy
-                EnemyHealthScript enemyhealth = hit.collider.GetComponentInParent<EnemyHealthScript>();
-                if (enemyhealth != null)
-                {
-                    // Deal damage to the enemy
-                    
-                    enemyhealth.TakeDamage(attackdamage);
-                }
-            }
-            // Draw the ray in the scene view for debugging purposes
-            Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
-        }
-        CameraShaker.Instance.ShakeOnce(2f, 2f, .1f, .1f);
-        animator.SetBool("isAttacking", false);
-
-        RepeatedRangedAttack();
-
-    }
 
     private void RangedAttack()
     {
@@ -154,8 +133,17 @@ public class playermovement : MonoBehaviour
         
     }
 
-    
+    public void RunTree()
+    {
+        treeenabled = true;
+    }
 
-    
+    public void StopTree()
+    {
+        treeenabled = false;
+    }
+
+
+
 
 }

@@ -210,7 +210,7 @@ MonoBehaviour:
   attackdamage: 20
   spreadangle: 60
   numrays: 10
-  attackdelay: 0.33333334
+  attackdelay: 0.3333333
   shootpos: {fileID: 329902307}
   shootable: {fileID: 940586577998691549, guid: 74696b38b52918f4bae2c7d1257baf3e,
     type: 3}
@@ -668,7 +668,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 661172356}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db03d9097abf2db4ab0111606dba5f01, type: 3}
   m_Name: 
@@ -809,7 +809,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735458725}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db03d9097abf2db4ab0111606dba5f01, type: 3}
   m_Name: 
@@ -1615,7 +1615,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153337809}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db03d9097abf2db4ab0111606dba5f01, type: 3}
   m_Name: 
@@ -2117,7 +2117,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679486943}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db03d9097abf2db4ab0111606dba5f01, type: 3}
   m_Name: 

@@ -30,17 +30,6 @@ public class AttackButtonScript : MonoBehaviour
 
     void Attack()
     {
-        if (Time.time - previoustime >= cooldowntime)
-        {
-            previoustime = Time.time;
-            playerscript.AttackRequest();
-        }
-        else
-        {
-            //Debug.Log("Cooldown in progress");
-        }
-
-
-        
+        playerscript.RunTree();
     }
 }
