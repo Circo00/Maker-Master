@@ -59,11 +59,11 @@ public class playermovement : MonoBehaviour
         MeleeAttackNode meleeattacknode = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
         RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
         
-        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { meleeattacknode });
+        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { rangedattacknode });
 
         EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this, new List<Node> { forloopnode });
 
-        topnode = new Sequence(new List<Node> {forloopnode, rangedattacknode, endofsequencenode});
+        topnode = new Sequence(new List<Node> {forloopnode, endofsequencenode});
 
     }
 
