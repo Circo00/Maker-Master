@@ -55,12 +55,15 @@ public class playermovement : MonoBehaviour
 
     private void ConstructBehaviourTree()
     {
-        EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this);
-        RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
+        
         MeleeAttackNode meleeattacknode = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
-        //StartMeleeAttackNode startmeleeattacknode = new StartMeleeAttackNode(attackdelay, animator);
+        RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
+        
+        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { meleeattacknode });
 
-        topnode = new Sequence(new List<Node> {meleeattacknode, rangedattacknode, endofsequencenode});;
+        EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this, new List<Node> { forloopnode });
+
+        topnode = new Sequence(new List<Node> {forloopnode, rangedattacknode, endofsequencenode});
 
     }
 

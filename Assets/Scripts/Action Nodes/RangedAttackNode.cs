@@ -34,4 +34,9 @@ public class RangedAttackNode : Node
         shootablerb.AddRelativeForce(Random.Range(shootingoffset, -shootingoffset), 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
 
     }
+
+    public override void ResetValues()
+    {
+
+    }
 }

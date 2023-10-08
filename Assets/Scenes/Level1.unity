@@ -214,7 +214,7 @@ MonoBehaviour:
   shootpos: {fileID: 329902307}
   shootable: {fileID: 940586577998691549, guid: 74696b38b52918f4bae2c7d1257baf3e,
     type: 3}
-  shootableforce: 2
+  shootableforce: 4
   shootingoffset: 0.0025
   firingrate: 0.05
   shootablecount: 30

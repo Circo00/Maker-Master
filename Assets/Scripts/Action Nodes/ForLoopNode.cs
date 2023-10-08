@@ -2,25 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sequence : Node
+public class ForLoopNode : Node
 {
+    private int n;
     protected List<Node> nodes = new List<Node>();
 
-    public Sequence(List<Node> nodes)
+    private int counter;
+
+    private float previoustime = 0;
+    private float cooldowntime = 0.2f;
+
+    public ForLoopNode(int n, List<Node> nodes)
     {
+        this.n = n;
         this.nodes = nodes;
     }
 
     public override NodeState Evaluate()
     {
-        bool isAnyNodeRunning = false;
+        if (counter >= n) { return NodeState.SUCCESS;}
+        if (Time.time - previoustime < cooldowntime) { return NodeState.FAILURE; }
+        
         foreach (var node in nodes)
         {
-            switch(node.Evaluate())
+            switch (node.Evaluate())
             {
-                case NodeState.RUNNING:
-                    isAnyNodeRunning = true;
-                    break;
                 case NodeState.SUCCESS:
                     break;
                 case NodeState.FAILURE:
@@ -29,12 +35,15 @@ public class Sequence : Node
             }
         }
 
-        _nodestate = isAnyNodeRunning ? NodeState.RUNNING : NodeState.SUCCESS;
-        return _nodestate;
+        counter += 1;
+        Debug.Log(counter);
+        previoustime = Time.time;
+        
+        return NodeState.FAILURE;
     }
 
     public override void ResetValues()
     {
-
+        counter = 0;
     }
 }

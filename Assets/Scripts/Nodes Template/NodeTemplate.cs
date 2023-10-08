@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class NodeTemplate : Node
 {
-    private Transform transform;
+    private Transform _transform;
     private Transform target;
 
     public NodeTemplate(Transform transform, Transform target)
     {
-        this.transform = transform;
+        this._transform = transform;
         this.target = target;
         
     }
@@ -26,5 +26,10 @@ public class NodeTemplate : Node
         {
             return NodeState.FAILURE;
         }
+    }
+
+    public override void ResetValues()
+    {
+
     }
 }

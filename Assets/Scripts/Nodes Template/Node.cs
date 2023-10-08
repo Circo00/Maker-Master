@@ -9,6 +9,8 @@ public abstract class Node : MonoBehaviour
     public NodeState nodestate { get { return _nodestate; } }
 
     public abstract NodeState Evaluate();
+
+    public abstract void ResetValues();
 }
 
 public enum NodeState

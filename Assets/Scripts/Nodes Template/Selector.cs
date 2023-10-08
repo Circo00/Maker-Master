@@ -32,4 +32,9 @@ public class Selector : Node
         _nodestate = NodeState.FAILURE;
         return _nodestate;
     }
+
+    public override void ResetValues()
+    {
+        
+    }
 }

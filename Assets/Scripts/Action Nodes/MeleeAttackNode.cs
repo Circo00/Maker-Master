@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeAttackNode : Node
 {
     private Animator animator;
-    private Transform transform;
+    private Transform _transform;
     private float attackrange;
     private int attackdamage;
     private float spreadangle = 30f;
@@ -19,7 +19,7 @@ public class MeleeAttackNode : Node
     public MeleeAttackNode(Animator animator, Transform transform, float attackrange, int attackdamage, float spreadangle, int numrays, float cooldowntime)
     {
         this.animator = animator;
-        this.transform = transform;
+        this._transform = transform;
         this.attackrange = attackrange;
         this.attackdamage = attackdamage;
         this.spreadangle = spreadangle;
@@ -57,9 +57,9 @@ public class MeleeAttackNode : Node
         {
             float currentAngle = -spreadangle / 2f + (angleStep * i);
             Quaternion rayRotation = Quaternion.Euler(0f, currentAngle, 0f);
-            Vector3 rayDirection = rayRotation * transform.forward;
+            Vector3 rayDirection = rayRotation * _transform.forward;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, rayDirection, out hit, attackrange))
+            if (Physics.Raycast(_transform.position, rayDirection, out hit, attackrange))
             {
                 EnemyHealthScript enemyhealth = hit.collider.GetComponentInParent<EnemyHealthScript>();
                 if (enemyhealth != null)
@@ -67,10 +67,15 @@ public class MeleeAttackNode : Node
                     enemyhealth.TakeDamage(attackdamage);
                 }
             }
-            Debug.DrawRay(transform.position, rayDirection * attackrange, Color.red, 0.1f);
+            Debug.DrawRay(_transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
 
         animator.SetBool("isAttacking", false);
+
+    }
+
+    public override void ResetValues()
+    {
 
     }
 }
