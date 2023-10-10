@@ -35,6 +35,9 @@ public class Sequence : Node
 
     public override void ResetValues()
     {
-
+        foreach (var node in nodes)
+        {
+            node.ResetValues();
+        }
     }
 }

@@ -49,5 +49,9 @@ public class ForLoopNode : Node
     public override void ResetValues()
     {
         counter = 0;
+        foreach (var node in nodes)
+        {
+            node.ResetValues();
+        }
     }
 }
