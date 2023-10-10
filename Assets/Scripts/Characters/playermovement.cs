@@ -59,11 +59,14 @@ public class playermovement : MonoBehaviour
         MeleeAttackNode meleeattacknode = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
         RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
         
-        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { rangedattacknode });
+        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { rangedattacknode, meleeattacknode });
+        ForLoopNode forloopnode2 = new ForLoopNode(2, new List<Node> {forloopnode});
 
-        EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this, new List<Node> { forloopnode });
+        //Enter the whole algorithm without the end of sequence here
+        //maybe for the reset values of loops, add a resetvalue func in loops which it resets counter and resets child values
+        EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this, new List<Node> { forloopnode2 });
 
-        topnode = new Sequence(new List<Node> {forloopnode, endofsequencenode});
+        topnode = new Sequence(new List<Node> {forloopnode2, endofsequencenode});
 
     }
 

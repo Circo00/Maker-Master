@@ -10,6 +10,8 @@ public class RangedAttackNode : Node
     private float shootableforce;
     private float shootingoffset;
 
+    private bool done = false;
+
     public RangedAttackNode(Transform shootpos, GameObject shootable, Rigidbody shootablerb, float shootableforce, float shootingoffset)
     {
         this.shootpos = shootpos;
@@ -22,7 +24,9 @@ public class RangedAttackNode : Node
 
     public override NodeState Evaluate()
     {
+        if(done == true) { return NodeState.SUCCESS; }
         RangedAttack();
+        done = true;
         return NodeState.SUCCESS;
         
     }
@@ -37,6 +41,6 @@ public class RangedAttackNode : Node
 
     public override void ResetValues()
     {
-
+        done = false;
     }
 }

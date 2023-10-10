@@ -36,6 +36,10 @@ public class ForLoopNode : Node
         }
 
         counter += 1;
+        foreach (var node in nodes)
+        {
+            node.ResetValues();
+        }
         Debug.Log(counter);
         previoustime = Time.time;
         

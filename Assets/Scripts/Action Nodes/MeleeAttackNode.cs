@@ -15,6 +15,7 @@ public class MeleeAttackNode : Node
     private float cooldowntime;
 
     private bool waitingtoattack = false;
+    private bool done = false;
 
     public MeleeAttackNode(Animator animator, Transform transform, float attackrange, int attackdamage, float spreadangle, int numrays, float cooldowntime)
     {
@@ -30,6 +31,8 @@ public class MeleeAttackNode : Node
 
     public override NodeState Evaluate()
     {
+        if (done == true) { return NodeState.SUCCESS; }
+
         if (!waitingtoattack)
         {
             animator.SetBool("isAttacking", true);
@@ -41,6 +44,7 @@ public class MeleeAttackNode : Node
         {
             Attack();
             waitingtoattack = false;
+            done = true;
             return NodeState.SUCCESS;
         }
         else
@@ -76,6 +80,6 @@ public class MeleeAttackNode : Node
 
     public override void ResetValues()
     {
-
+        done = false;
     }
 }
