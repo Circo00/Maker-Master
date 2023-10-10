@@ -5,6 +5,8 @@ using UnityEngine;
 public class ArrangeBlock : MonoBehaviour
 {
     private RectTransform recttransform;
+    private float defaultheight = 14f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,6 @@ public class ArrangeBlock : MonoBehaviour
 
         if (transform.childCount < 1) { return; }
 
-        float rectheight = 14f;
 
         float prevchildheight = 0;
 
@@ -27,16 +28,19 @@ public class ArrangeBlock : MonoBehaviour
             RectTransform currentchild = new RectTransform();
 
             currentchild = transform.GetChild(i).GetComponent<RectTransform>();
-            rectheight += currentchild.sizeDelta.y;
-            currentchild.position = new Vector2(recttransform.position.x, recttransform.position.y + recttransform.sizeDelta.y/2 - 7 - prevchildheight - currentchild.sizeDelta.y / 2 +50);
-            prevchildheight += currentchild.sizeDelta.y * 5;
+            currentchild.position = new Vector2(recttransform.position.x, recttransform.position.y - prevchildheight*5 - 35);
+            
+
+            prevchildheight += currentchild.sizeDelta.y;
 
 
         }
 
-        recttransform.sizeDelta = new Vector2(50, rectheight);
+        
 
-        Debug.Log(recttransform.sizeDelta);
+        recttransform.sizeDelta = new Vector2(50, defaultheight + prevchildheight);
+
+        
 
     }
 }
