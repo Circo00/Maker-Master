@@ -37,8 +37,10 @@ public class playermovement : MonoBehaviour
     public int shootablecount = 10;
     float firetimer;
 
+    private Transform skillholder;
     private Node topnode;
     private bool treeenabled = false;
+    private Transform heading;
 
     // Start is called before the first frame update
     void Start()
@@ -48,25 +50,34 @@ public class playermovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         shootablerb = shootable.GetComponent<Rigidbody>();
+        //skillholder = GameObject.Find("Skill Holder").transform;
+        //heading = skillholder.GetComponentInChildren<Transform>();
+        
+
         ConstructBehaviourTree();
+        
+
 
 
     }
+
+    
 
     private void ConstructBehaviourTree()
     {
         
         MeleeAttackNode meleeattacknode = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
+        //MeleeAttackNode meleeattacknode1 = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
         RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
-        
-        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { rangedattacknode});
-        ForLoopNode forloopnode2 = new ForLoopNode(2, new List<Node> {forloopnode});
+        //RangedAttackNode rangedattacknode1 = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
 
-        //Enter the whole algorithm without the end of sequence here
-        //maybe for the reset values of loops, add a resetvalue func in loops which it resets counter and resets child values
-        EndOfSequenceNode endofsequencenode = new EndOfSequenceNode(this, new List<Node> { forloopnode2 });
+        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { rangedattacknode, meleeattacknode});
 
-        topnode = new Sequence(new List<Node> {forloopnode2, meleeattacknode});
+
+        List<Node> outputlist = new List<Node> { forloopnode};
+
+
+        topnode = new Sequence(outputlist);
 
     }
 
@@ -75,6 +86,7 @@ public class playermovement : MonoBehaviour
     {
         float horizontal_value = joystick.Horizontal;
         float vertical_value = joystick.Vertical;
+        
 
         rb.AddForce(horizontal_value * speed * Time.deltaTime, 0, vertical_value * speed * Time.deltaTime);
 
