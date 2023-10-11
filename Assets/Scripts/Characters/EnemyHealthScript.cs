@@ -66,7 +66,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (collision.gameObject.tag != "Ground" && animator.GetBool("isDying") == true)
         {
             
-            Physics.IgnoreCollision(collision.collider, childcollider, true);
+            //Physics.IgnoreCollision(collision.collider, childcollider, true);
         }
     }
 
@@ -76,7 +76,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (collision.gameObject.tag != "Ground" && animator.GetBool("isDying") == true)
         {
             
-            Physics.IgnoreCollision(collision.collider, childcollider, true);
+            //Physics.IgnoreCollision(collision.collider, childcollider, true);
         }
     }
 }

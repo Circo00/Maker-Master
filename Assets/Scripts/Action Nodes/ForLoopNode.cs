@@ -9,8 +9,8 @@ public class ForLoopNode : Node
 
     private int counter;
 
-    private float previoustime = 0;
-    private float cooldowntime = 0.2f;
+    //private float previoustime = 0;
+    //private float cooldowntime = 0.2f;
 
     public ForLoopNode(int n, List<Node> nodes)
     {
@@ -21,7 +21,7 @@ public class ForLoopNode : Node
     public override NodeState Evaluate()
     {
         if (counter >= n) { return NodeState.SUCCESS;}
-        if (Time.time - previoustime < cooldowntime) { return NodeState.FAILURE; }
+        //if (Time.time - previoustime < cooldowntime) { return NodeState.FAILURE; }
         
         foreach (var node in nodes)
         {
@@ -41,7 +41,7 @@ public class ForLoopNode : Node
             node.ResetValues();
         }
         Debug.Log(counter);
-        previoustime = Time.time;
+        //previoustime = Time.time;
         
         return NodeState.FAILURE;
     }

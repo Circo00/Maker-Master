@@ -106,7 +106,7 @@ public class playermovement : MonoBehaviour
         RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
         //RangedAttackNode rangedattacknode1 = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
 
-        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> {meleeattacknode});
+        ForLoopNode forloopnode = new ForLoopNode(10, new List<Node> {meleeattacknode});
 
         if (header.childCount > 0)
         {
