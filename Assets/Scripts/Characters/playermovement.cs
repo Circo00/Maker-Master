@@ -40,7 +40,10 @@ public class playermovement : MonoBehaviour
     private Transform skillholder;
     private Node topnode;
     private bool treeenabled = false;
-    private Transform heading;
+    private Transform header;
+
+    private List<Node> whenpressed = new List<Node>();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -50,18 +53,50 @@ public class playermovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         shootablerb = shootable.GetComponent<Rigidbody>();
-        //skillholder = GameObject.Find("Skill Holder").transform;
-        //heading = skillholder.GetComponentInChildren<Transform>();
-        
+        skillholder = GameObject.Find("Skill Holder").transform;
+        if(skillholder != null && skillholder.childCount != 0)
+        {
+            header = skillholder.GetChild(0);
+        }
 
-        ConstructBehaviourTree();
+
+
+        //ConstructBehaviourTree();
+
+        topnode = new Sequence(Constructor(header));
         
 
 
 
     }
 
-    
+    private List<Node> Constructor(Transform parent)
+    {
+        List<Node> outputlist = new List<Node>();
+
+        if (parent.childCount > 0)
+        {
+            for (int i = 0; i < parent.childCount; i++)
+            {
+
+                if (parent.GetChild(i).name.Contains("Melee"))
+                {
+                    outputlist.Add(new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay));
+                }
+                else if (parent.GetChild(i).name.Contains("Ranged"))
+                {
+                    outputlist.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
+                }
+                else if (parent.GetChild(i).name.Contains("Repeat"))
+                {
+                    outputlist.Add(new ForLoopNode(5, Constructor(parent.GetChild(i).transform)));
+                }
+
+            }
+        }
+
+        return outputlist;
+    }
 
     private void ConstructBehaviourTree()
     {
@@ -71,13 +106,32 @@ public class playermovement : MonoBehaviour
         RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
         //RangedAttackNode rangedattacknode1 = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
 
-        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> { rangedattacknode, meleeattacknode});
+        ForLoopNode forloopnode = new ForLoopNode(5, new List<Node> {meleeattacknode});
+
+        if (header.childCount > 0)
+        {
+            for (int i = 0; i < header.childCount; i++)
+            {
+
+                if (header.GetChild(i).name.Contains("Melee"))
+                {
+                    whenpressed.Add(new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay));
+                }
+                else if (header.GetChild(i).name.Contains("Ranged"))
+                {
+                    whenpressed.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
+                }
+
+            }
+        }
+
+        
+        
+        
 
 
-        List<Node> outputlist = new List<Node> { forloopnode};
 
-
-        topnode = new Sequence(outputlist);
+        topnode = new Sequence(whenpressed);
 
     }
 
@@ -102,10 +156,13 @@ public class playermovement : MonoBehaviour
         {
             if (topnode.Evaluate() == NodeState.SUCCESS)
             {
+                
                 topnode.ResetValues();
                 treeenabled = false;
             };
         }
+
+        Debug.Log(animator.GetBool("isAttacking"));
 
     }
 

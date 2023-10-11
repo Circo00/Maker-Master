@@ -11,10 +11,16 @@ public class MeleeAttackNode : Node
     private float spreadangle = 30f;
     private int numrays = 5;
 
+    //timer 1
     private float previoustime = 0;
     private float cooldowntime;
 
+    //timer 2
+    private float previoustime2 = 0;
+    private float cooldowntime2 = 0.2f;
+
     private bool waitingtoattack = false;
+    private bool doneattack = false;
     private bool done = false;
 
     public MeleeAttackNode(Animator animator, Transform transform, float attackrange, int attackdamage, float spreadangle, int numrays, float cooldowntime)
@@ -32,6 +38,7 @@ public class MeleeAttackNode : Node
     public override NodeState Evaluate()
     {
         if (done == true) { return NodeState.SUCCESS; }
+        if (doneattack == true  && Time.time - previoustime2 >= cooldowntime2) { done = true; animator.SetBool("isAttacking", false); return NodeState.SUCCESS; }
 
         if (!waitingtoattack)
         {
@@ -44,8 +51,8 @@ public class MeleeAttackNode : Node
         {
             Attack();
             waitingtoattack = false;
-            done = true;
-            return NodeState.SUCCESS;
+            doneattack = true;
+            return NodeState.FAILURE;
         }
         else
         {
@@ -56,6 +63,7 @@ public class MeleeAttackNode : Node
 
     private void Attack()
     {
+        
         float angleStep = spreadangle / (numrays - 1);
         for (int i = 0; i < numrays; i++)
         {
@@ -73,13 +81,19 @@ public class MeleeAttackNode : Node
             }
             Debug.DrawRay(_transform.position, rayDirection * attackrange, Color.red, 0.1f);
         }
-
         animator.SetBool("isAttacking", false);
+        previoustime2 = Time.time;
+
+        
 
     }
 
     public override void ResetValues()
     {
         done = false;
+        doneattack = false;
+        waitingtoattack = false;
     }
+
+    
 }

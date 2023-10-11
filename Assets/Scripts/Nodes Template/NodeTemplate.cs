@@ -17,7 +17,7 @@ public class NodeTemplate : Node
     public override NodeState Evaluate()
     {
 
-        if (Vector3.Distance(transform.position, target.transform.position) < 5)
+        if (Vector3.Distance(_transform.position, target.transform.position) < 5)
         {
             
             return NodeState.SUCCESS;

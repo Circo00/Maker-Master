@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class Node : MonoBehaviour
+public abstract class Node
 {
     protected NodeState _nodestate;
     public NodeState nodestate { get { return _nodestate; } }
