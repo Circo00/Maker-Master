@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillData: MonoBehaviour
 {
     public List<string> skillstringlist = new List<string>();
     private Transform skillholder;
     private Transform header;
+    private Transform whenpress;
 
     public void CallSkillConstructer()
     {
         skillholder = GameObject.Find("Skill Holder").transform;
+        whenpress = GameObject.Find("When Pressed").transform;
+        whenpress.transform.SetParent(skillholder);
         if (skillholder != null && skillholder.childCount != 0)
         {
             header = skillholder.GetChild(0);
@@ -42,8 +46,7 @@ public class SkillData: MonoBehaviour
 
             }
         }
-
-        Debug.Log(outputlist);
+        
         return outputlist;
     }
 
