@@ -25,7 +25,7 @@ public class RangedAttackNode : Node
         this.shootablerb = shootablerb;
         this.shootableforce = shootableforce;
         this.shootingoffset = shootingoffset;
-
+        
     }
 
     public override NodeState Evaluate()
