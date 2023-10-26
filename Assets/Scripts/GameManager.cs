@@ -32,22 +32,22 @@ public class GameManager : MonoBehaviour
 
         List<Node> Constructor(Transform parent)
         {
-            List<> outputlist = new List<>();            
+            List<Node> outputlist = new List<Node>();            
             if (parent.childCount > 0)
             {
                 for (int i = 0; i < parent.childCount; i++)
                 {
                     if (parent.GetChild(i).name.Contains("Melee"))
                     {
-                        outputlist.Add();
+                        //outputlist.Add();
                     }
                     else if (parent.GetChild(i).name.Contains("Ranged"))
                     {
-                        outputlist.Add();
+                        //outputlist.Add();
                     }
                     else if (parent.GetChild(i).name.Contains("Repeat"))
                     {
-                        outputlist.Add();
+                        //outputlist.Add();
                     }
                 }
             }
