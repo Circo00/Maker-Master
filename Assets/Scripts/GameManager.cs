@@ -4,55 +4,21 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public void SaveSkill()
     {
-        
+        SaveSystem.SaveSkill();
+            
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadSkill()
     {
-        
-    }
+        SkillData thingy = SaveSystem.LoadSkill();
 
-    public void GenerateSkillTreeString()
-    {
-
-        List<string> skillstringlist = new List<string>();
-        Transform skillholder = GameObject.Find("Skill Holder").transform;
-        Transform whenpress = GameObject.Find("When Pressed").transform;
-        whenpress.transform.SetParent(skillholder);
-        if (skillholder != null && skillholder.childCount != 0)
+        foreach(NodeBlock abcde in thingy.blocks)
         {
-            Transform header = skillholder.GetChild(0);
-            Constructor(header);
+            Debug.Log(abcde.name);
         }
-
-
-        List<Node> Constructor(Transform parent)
-        {
-            List<Node> outputlist = new List<Node>();            
-            if (parent.childCount > 0)
-            {
-                for (int i = 0; i < parent.childCount; i++)
-                {
-                    if (parent.GetChild(i).name.Contains("Melee"))
-                    {
-                        //outputlist.Add();
-                    }
-                    else if (parent.GetChild(i).name.Contains("Ranged"))
-                    {
-                        //outputlist.Add();
-                    }
-                    else if (parent.GetChild(i).name.Contains("Repeat"))
-                    {
-                        //outputlist.Add();
-                    }
-                }
-            }
-            return outputlist;
-        }       
     }
 
 }

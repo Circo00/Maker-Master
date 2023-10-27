@@ -10,7 +10,7 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/saved.skill";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        SkillData skilldata = new SkillData(696996969);
+        SkillData skilldata = new SkillData();
 
         formatter.Serialize(stream, skilldata);
         stream.Close();
@@ -24,7 +24,6 @@ public static class SaveSystem
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             SkillData data = formatter.Deserialize(stream) as SkillData;
-
             stream.Close();
             return data;
         }
@@ -34,4 +33,6 @@ public static class SaveSystem
             return null;
         }
     }
+
+    
 }
