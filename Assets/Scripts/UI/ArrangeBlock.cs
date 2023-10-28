@@ -28,7 +28,7 @@ public class ArrangeBlock : MonoBehaviour
             RectTransform currentchild = new RectTransform();
 
             currentchild = transform.GetChild(i).GetComponent<RectTransform>();
-            currentchild.position = new Vector2(recttransform.position.x, recttransform.position.y - prevchildheight*5 - 35);
+            currentchild.position = new Vector2(recttransform.position.x, recttransform.position.y - prevchildheight * 8 - 56);
             
 
             prevchildheight += currentchild.sizeDelta.y;

@@ -15,19 +15,29 @@ public class GameManager : MonoBehaviour
     {
         SkillData skilldata = SaveSystem.LoadSkill();
         Transform whenpress = GameObject.Find("When Pressed").transform;
+
+        //reset all parental relationships before loading
+
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Node Block");
+        foreach(GameObject nodeblocks in taggedObjects)
+        {
+            nodeblocks.transform.SetParent(GameObject.Find("Background").transform);
+        }
+
+        //Loading action
+
         SkillParentSetting(skilldata.blocks, whenpress);
 
-        //return skilldata;
     }
 
-    public void SkillParentSetting(List<NodeBlock> nodeblocklist, Transform parent)
+    private void SkillParentSetting(List<NodeBlock> nodeblocklist, Transform parent)
     {
         
         
 
         foreach (NodeBlock nodeblock in nodeblocklist)
         {
-            Transform currentchild = FindNodeBlockWithNoParent(nodeblock.name);
+            Transform currentchild = FindOrphanBlock(nodeblock.name);
 
             currentchild.SetParent(parent);
 
@@ -39,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private Transform FindNodeBlockWithNoParent(string searchString)
+    private Transform FindOrphanBlock(string searchString)
     {
         GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag("Node Block");
 
@@ -52,6 +62,12 @@ public class GameManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public SkillData ReturnSkillData()
+    {
+        SkillData skilldata = SaveSystem.LoadSkill();
+        return skilldata;
     }
 
 }

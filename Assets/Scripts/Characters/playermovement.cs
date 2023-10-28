@@ -43,7 +43,11 @@ public class playermovement : MonoBehaviour
     private Transform header;
 
     private List<Node> whenpressed = new List<Node>();
-    
+
+
+
+    public GameManager gamemanager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,83 +63,44 @@ public class playermovement : MonoBehaviour
             header = skillholder.GetChild(0);
         }
 
-
+        SkillData skilldata = gamemanager.ReturnSkillData();
 
         //ConstructBehaviourTree();
 
-        topnode = new Sequence(Constructor(header));
+        topnode = new Sequence(Constructor(skilldata.blocks));
         
 
 
 
     }
 
-    private List<Node> Constructor(Transform parent)
+    private List<Node> Constructor(List<NodeBlock> nodeblocklist)
     {
         List<Node> outputlist = new List<Node>();
 
-        if (parent.childCount > 0)
+        foreach (NodeBlock nodeblock in nodeblocklist)
         {
-            for (int i = 0; i < parent.childCount; i++)
+            if (nodeblock.name.Contains("Melee"))
             {
-
-                if (parent.GetChild(i).name.Contains("Melee"))
-                {
-                    outputlist.Add(new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay));
-                }
-                else if (parent.GetChild(i).name.Contains("Ranged"))
-                {
-                    outputlist.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
-                }
-                else if (parent.GetChild(i).name.Contains("Repeat"))
-                {
-                    outputlist.Add(new ForLoopNode(5, Constructor(parent.GetChild(i).transform)));
-                }
-
+                outputlist.Add(new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay));
             }
+            else if (nodeblock.name.Contains("Ranged"))
+            {
+                outputlist.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
+            }
+            else if (nodeblock.name.Contains("Repeat"))
+            {
+                outputlist.Add(new ForLoopNode(10, Constructor(nodeblock.children)));
+            }
+
+
         }
+
 
         return outputlist;
     }
 
-    private void ConstructBehaviourTree()
-    {
-        
-        MeleeAttackNode meleeattacknode = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
-        //MeleeAttackNode meleeattacknode1 = new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay);
-        RangedAttackNode rangedattacknode = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
-        //RangedAttackNode rangedattacknode1 = new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset);
 
-        ForLoopNode forloopnode = new ForLoopNode(10, new List<Node> {meleeattacknode});
-
-        if (header.childCount > 0)
-        {
-            for (int i = 0; i < header.childCount; i++)
-            {
-
-                if (header.GetChild(i).name.Contains("Melee"))
-                {
-                    whenpressed.Add(new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay));
-                }
-                else if (header.GetChild(i).name.Contains("Ranged"))
-                {
-                    whenpressed.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
-                }
-
-            }
-        }
-
-        
-        
-        
-
-
-
-        topnode = new Sequence(whenpressed);
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float horizontal_value = joystick.Horizontal;

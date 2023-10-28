@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class MeleeAttackNode : Node
 {
@@ -77,6 +78,7 @@ public class MeleeAttackNode : Node
                 if (enemyhealth != null)
                 {
                     enemyhealth.TakeDamage(attackdamage);
+                    CameraShaker.Instance.ShakeOnce(2f, 5f, .05f, .05f);
                 }
             }
             Debug.DrawRay(_transform.position, rayDirection * attackrange, Color.red, 0.1f);

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class SceneManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Animator transition;
+    public float transition_time;
+
     void Start()
     {
         
@@ -18,6 +21,15 @@ public class SceneManagerScript : MonoBehaviour
     }
     public void ChangeScene(string scenename)
     {
+        StartCoroutine(LoadScene(scenename));
+    }
+
+    IEnumerator LoadScene(string scenename)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transition_time);
+
         SceneManager.LoadScene(scenename);
     }
 }
