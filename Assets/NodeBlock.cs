@@ -6,7 +6,7 @@ using UnityEngine;
 public class NodeBlock
 {
     public string name;
-    private List<NodeBlock> children = new List<NodeBlock>();
+    public List<NodeBlock> children = new List<NodeBlock>();
 
     public NodeBlock(string name, List<NodeBlock> children)
     {

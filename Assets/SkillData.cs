@@ -10,13 +10,13 @@ public class SkillData
     public SkillData()
     {
         
-        Transform skillholder = GameObject.Find("Skill Holder").transform;
+        
         Transform whenpress = GameObject.Find("When Pressed").transform;
-        whenpress.transform.SetParent(skillholder);
-        if (skillholder != null && skillholder.childCount != 0)
+        
+        if (whenpress != null)
         {
-            Transform header = skillholder.GetChild(0);
-            blocks = Constructor(header);
+            
+            blocks = Constructor(whenpress);
             
         }
 
@@ -36,9 +36,9 @@ public class SkillData
                     {
                         outputlist.Add( new NodeBlock("Ranged", new List<NodeBlock>()) );
                     }
-                    else if (parent.GetChild(i).name.Contains("Repeat"))
+                    else if (parent.GetChild(i).name.Contains("Repeat 10"))
                     {
-                        outputlist.Add( new NodeBlock("Repeat", Constructor(parent.GetChild(i))) );
+                        outputlist.Add( new NodeBlock("Repeat 10", Constructor(parent.GetChild(i))) );
                     }
                 }
             }

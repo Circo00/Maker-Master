@@ -53,7 +53,7 @@ public class playermovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         shootablerb = shootable.GetComponent<Rigidbody>();
-        skillholder = GameObject.Find("Skill Holder").transform;
+        //skillholder = GameObject.Find("Skill Holder").transform;
         if(skillholder != null && skillholder.childCount != 0)
         {
             header = skillholder.GetChild(0);
