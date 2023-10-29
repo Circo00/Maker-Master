@@ -20,6 +20,9 @@ public class EnemyHealthScript : MonoBehaviour
     public float blinkduration;
     float blinktimer;
 
+    [Header("Floating Text")]
+    public GameObject floatingtext;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +52,16 @@ public class EnemyHealthScript : MonoBehaviour
     public void TakeDamage(int damagepoint)
     {
         currenthealth -= damagepoint;
-        Debug.Log("Damage Taken");
+
+        if (floatingtext)
+        {
+            ShowFloatingText(damagepoint);
+        }
+        
+       
         blinktimer = blinkduration;
+
+
         if (currenthealth <= 0)
         {
             _enemyscript.enabled = false;
@@ -58,6 +69,12 @@ public class EnemyHealthScript : MonoBehaviour
             skinnedmeshrenderer.material.color = Color.white * 1;
             Invoke("Die", 5);
         }
+    }
+
+    void ShowFloatingText(int damagepoint)
+    {
+        var currenttext =  Instantiate(floatingtext, transform.position, Quaternion.identity, transform);
+        currenttext.GetComponent<TextMesh>().text = damagepoint.ToString();
     }
 
     private void OnCollisionEnter(Collision collision)

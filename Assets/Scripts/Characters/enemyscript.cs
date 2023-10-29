@@ -20,6 +20,7 @@ public class enemyscript : MonoBehaviour
     public int attackdamage = 50;
     GameObject player;
     PlayerHealthScript _healthscript;
+    public float attackrange = 0.3f;
 
     public float attackdelay = 0.5f;
 
@@ -100,10 +101,10 @@ public class enemyscript : MonoBehaviour
     private void Attack()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 0.3f))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, attackrange))
         {
-            
 
+            //Debug.DrawRay(transform.position, transform.forward, color:Color.blue);
             PlayerHealthScript playerhealth = hit.collider.GetComponentInParent<PlayerHealthScript>();
 
             if (playerhealth != null && animator.GetBool("isAttacking") == false)
@@ -113,7 +114,7 @@ public class enemyscript : MonoBehaviour
                 Invoke("DamagePlayer", attackdelay);
                 
                 
-                CameraShaker.Instance.ShakeOnce(.5f, 5f, .05f, .05f);
+                
             }
         }
     }
@@ -122,6 +123,7 @@ public class enemyscript : MonoBehaviour
     {
         _healthscript.TakeDamage(attackdamage);
         animator.SetBool("isAttacking", false);
+        CameraShaker.Instance.ShakeOnce(5f, 5f, .5f, .5f);
 
     }
 

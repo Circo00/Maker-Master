@@ -94,6 +94,8 @@ MonoBehaviour:
   maxhealth: 100
   blinkintensity: 0.5
   blinkduration: 0.1
+  floatingtext: {fileID: 2802477769318320244, guid: 18db9293c275ef14a954293ceced206c,
+    type: 3}
 --- !u!1001 &512071913205097176
 PrefabInstance:
   m_ObjectHideFlags: 0
