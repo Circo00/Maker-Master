@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 
-public class enemyscript : MonoBehaviour
+public class SmurfCatScript : MonoBehaviour
 {
     [Header("Movement")]
     public string playerTag = "Player";
@@ -24,7 +24,7 @@ public class enemyscript : MonoBehaviour
     public int attackdamage = 50;
     GameObject player;
     PlayerHealthScript _healthscript;
-    public float attackrange = 0.3f;
+    public float attackrange = 3f;
 
     public float attackdelay = 0.5f;
 
@@ -35,31 +35,31 @@ public class enemyscript : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag(playerTag).transform;
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-        
+
         //currenthealth = (int)maxhealth;
         player = GameObject.FindGameObjectWithTag(playerTag);
         _healthscript = player.GetComponent<PlayerHealthScript>();
-        
+
         //skinnedmeshrenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
     }
 
     private void Update()
     {
-        
+
         MovementAnimationController();
         SpeedControl();
         if (canattack)
         {
             Attack();
         }
-        
+
 
     }
 
     private void FixedUpdate()
     {
-        
+
         Movement();
 
     }
@@ -76,7 +76,7 @@ public class enemyscript : MonoBehaviour
         }
     }
 
-    
+
 
     private void Movement()
     {
@@ -108,38 +108,29 @@ public class enemyscript : MonoBehaviour
 
     private void Attack()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attackrange) && Time.time - previoustime >= cooldowntime)
+        
+        if (Vector3.Distance(transform.position, playerTransform.position) < attackrange && Time.time - previoustime >= cooldowntime)
         {
 
-            //Debug.DrawRay(transform.position, transform.forward, color:Color.blue);
-            PlayerHealthScript playerhealth = hit.collider.GetComponentInParent<PlayerHealthScript>();
-
-            if (playerhealth != null && animator.GetBool("isAttacking") == false)
+            if (animator.GetBool("isAttacking") == false)
             {
                 // Deal damage to the enemy
                 animator.SetBool("isAttacking", true);
                 Invoke("DamagePlayer", attackdelay);
-                
-                
-                
+
+
+
             }
         }
     }
 
     private void DamagePlayer()
     {
+
         
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attackrange))
+        if (Vector3.Distance(transform.position, playerTransform.position) < attackrange )
         {
-            PlayerHealthScript playerhealth = hit.collider.GetComponentInParent<PlayerHealthScript>();
-
-            if (playerhealth != null && animator.GetBool("isAttacking") == false)
-            {
-                playerhealth.TakeDamage(attackdamage);
-
-            }
+            _healthscript.TakeDamage(attackdamage);
 
         }
         animator.SetBool("isAttacking", false);

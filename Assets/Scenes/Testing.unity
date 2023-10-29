@@ -212,14 +212,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 30901505}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44aec0b52672b274fb49d646e5b8cac5, type: 3}
+  m_Script: {fileID: 11500000, guid: d3d691439e53f144d97e37e8cdfd0e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
   speed: 400
   movespeed: 1
+  cooldowntime: 5
   attackdamage: 50
-  attackrange: 1
+  attackrange: 2.5
   attackdelay: 1.5
 --- !u!1 &38427616
 GameObject:
@@ -328,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64eec6d785f640448e021dbb7e038cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 10000
+  maxhealth: 100
   healthbar: {fileID: 1012956756}
   blinkintensity: 1
   blinkduration: 0.1
