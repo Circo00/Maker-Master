@@ -49,7 +49,7 @@ public class RangedAttackNode : Node
         GameObject spawnedshootable = GameObject.Instantiate(shootable, shootpos.position, shootpos.rotation);
         CameraShaker.Instance.ShakeOnce(.5f, 5f, .05f, .05f);
         Rigidbody shootablerb = spawnedshootable.GetComponent<Rigidbody>();
-        shootablerb.AddRelativeForce(Random.Range(shootingoffset, -shootingoffset), 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
+        shootablerb.AddRelativeForce(Random.Range(shootingoffset, -shootingoffset) * Time.deltaTime, 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
         previoustime2 = Time.time;
 
     }

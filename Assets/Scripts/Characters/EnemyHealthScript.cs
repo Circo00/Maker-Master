@@ -67,7 +67,7 @@ public class EnemyHealthScript : MonoBehaviour
             _enemyscript.enabled = false;
             animator.SetBool("isDying", true);
             skinnedmeshrenderer.material.color = Color.white * 1;
-            Invoke("Die", 5);
+            Invoke("Die", 2);
         }
     }
 
@@ -83,7 +83,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (collision.gameObject.tag != "Ground" && animator.GetBool("isDying") == true)
         {
             
-            //Physics.IgnoreCollision(collision.collider, childcollider, true);
+            Physics.IgnoreCollision(collision.collider, childcollider, true);
         }
     }
 
@@ -93,7 +93,7 @@ public class EnemyHealthScript : MonoBehaviour
         if (collision.gameObject.tag != "Ground" && animator.GetBool("isDying") == true)
         {
             
-            //Physics.IgnoreCollision(collision.collider, childcollider, true);
+            Physics.IgnoreCollision(collision.collider, childcollider, true);
         }
     }
 }

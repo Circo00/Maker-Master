@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2827342433288482995}
-  - component: {fileID: 2827342433288482994}
+  - component: {fileID: 8724291205958660923}
   m_Layer: 0
   m_Name: Jimmy Spawner
   m_TagString: Untagged
@@ -32,18 +32,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2827342433288482994
+--- !u!114 &8724291205958660923
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2827342433288482957}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db03d9097abf2db4ab0111606dba5f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnobject: {fileID: 512071914037102425, guid: 9744a2fbd9b322b46b4d32e60222233b,
-    type: 3}
-  cooldowntime: 10
+  spawnobject: {fileID: 0}
+  cooldowntime: 5
