@@ -27,6 +27,9 @@ public class enemyscript : MonoBehaviour
     public float attackrange = 0.3f;
 
     public float attackdelay = 0.5f;
+   
+
+    
 
 
 

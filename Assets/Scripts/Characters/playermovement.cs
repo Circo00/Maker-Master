@@ -37,16 +37,21 @@ public class playermovement : MonoBehaviour
     public int shootablecount = 10;
     float firetimer;
 
+    [Header("Skills")]
     private Transform skillholder;
     private Node topnode;
     private bool treeenabled = false;
     private Transform header;
-
     private List<Node> whenpressed = new List<Node>();
-
-
-
     public GameManager gamemanager;
+    [Space(10)]
+
+    [Header("Audio")]
+    public GameObject footsteps;
+    private AudioSource audiosource;
+    public List<AudioClip> voice = new List<AudioClip>();
+    public float minInterval = 13f;
+    public float maxInterval = 15f;
 
 
     // Start is called before the first frame update
@@ -55,9 +60,9 @@ public class playermovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
-
+        
         shootablerb = shootable.GetComponent<Rigidbody>();
-        //skillholder = GameObject.Find("Skill Holder").transform;
+        
         if(skillholder != null && skillholder.childCount != 0)
         {
             header = skillholder.GetChild(0);
@@ -65,12 +70,12 @@ public class playermovement : MonoBehaviour
 
         SkillData skilldata = gamemanager.ReturnSkillData();
 
-        //ConstructBehaviourTree();
+        footsteps.SetActive(false);
 
         topnode = new Sequence(Constructor(skilldata.blocks));
-        
 
-
+        audiosource = GetComponent<AudioSource>();
+        StartCoroutine(PlayRandomAudio());
 
     }
 
@@ -116,6 +121,7 @@ public class playermovement : MonoBehaviour
         }
         SpeedControl();
         AnimationControl();
+        SoundControl();
 
         if (treeenabled)
         {
@@ -148,33 +154,27 @@ public class playermovement : MonoBehaviour
         if (rb.velocity.magnitude > 0.2)
         {
             animator.SetBool("isWalking", true);
+            
         }
         else
         {
             animator.SetBool("isWalking", false);
+            
         }
     }
 
-
-    private void RangedAttack()
+    private void SoundControl()
     {
-        GameObject spawnedshootable = Instantiate(shootable, shootpos.position, shootpos.rotation);
-        Rigidbody shootablerb = spawnedshootable.GetComponent<Rigidbody>();
-        shootablerb.AddRelativeForce(Random.Range(shootingoffset, -shootingoffset), 0, shootableforce * Time.deltaTime, ForceMode.Impulse);
-
-    }
-
-    private void RepeatedRangedAttack()
-    {
-        int shotshootablecount = 0;
-        while (shotshootablecount < shootablecount)
+        if (rb.velocity.magnitude > 0.2)
         {
-            Invoke("RangedAttack", shotshootablecount * firingrate);
-            shotshootablecount += 1;
-        }
-        
+            footsteps.SetActive(true);
 
-        
+        }
+        else
+        {
+            footsteps.SetActive(false);
+
+        }
     }
 
     public void RunTree()
@@ -185,6 +185,24 @@ public class playermovement : MonoBehaviour
     public void StopTree()
     {
         treeenabled = false;
+    }
+
+    private IEnumerator PlayRandomAudio()
+    {
+        while (true)
+        {
+            // Wait for a random interval between minInterval and maxInterval seconds
+            float interval = Random.Range(minInterval, maxInterval);
+            yield return new WaitForSeconds(interval);
+
+            // Play a random audio clip from the list
+            if (voice.Count > 0)
+            {
+                int randomIndex = Random.Range(0, voice.Count);
+                AudioClip clip = voice[randomIndex];
+                audiosource.PlayOneShot(clip);
+            }
+        }
     }
 
 

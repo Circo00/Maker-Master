@@ -6,7 +6,7 @@ public class EnemyHealthScript : MonoBehaviour
 {
 
     Collider childcollider;
-    enemyscript _enemyscript;
+    private enemyscript _enemyscript;
 
     [Header("Health")]
     public float maxhealth = 100f;
@@ -22,6 +22,13 @@ public class EnemyHealthScript : MonoBehaviour
 
     [Header("Floating Text")]
     public GameObject floatingtext;
+
+    [Header("Audio")]
+    public GameObject footstep;
+    public AudioSource audiosource;
+    public AudioClip coinaudio;
+    public float minPitch = 0.8f;
+    public float maxPitch = 1.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -61,13 +68,19 @@ public class EnemyHealthScript : MonoBehaviour
        
         blinktimer = blinkduration;
 
-
+        // && animator.GetBool("isDying") == false
         if (currenthealth <= 0)
         {
             _enemyscript.enabled = false;
             animator.SetBool("isDying", true);
             skinnedmeshrenderer.material.color = Color.white * 1;
+            float randomPitch = Random.Range(minPitch, maxPitch);
+            //audiosource.pitch = randomPitch;
+            //audiosource.PlayOneShot(coinaudio);
             Invoke("Die", 2);
+            //footstep.SetActive(false);
+            
+            
         }
     }
 
