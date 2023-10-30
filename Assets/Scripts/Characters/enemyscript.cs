@@ -135,15 +135,16 @@ public class enemyscript : MonoBehaviour
         {
             PlayerHealthScript playerhealth = hit.collider.GetComponentInParent<PlayerHealthScript>();
 
-            if (playerhealth != null && animator.GetBool("isAttacking") == false)
+            if (playerhealth != null)
             {
                 playerhealth.TakeDamage(attackdamage);
+                CameraShaker.Instance.ShakeOnce(1f, 5f, .2f, .2f);
 
             }
 
         }
         animator.SetBool("isAttacking", false);
-        CameraShaker.Instance.ShakeOnce(5f, 5f, .5f, .5f);
+        
         previoustime = Time.time;
 
     }

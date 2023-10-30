@@ -77,7 +77,9 @@ MonoBehaviour:
   playerTag: Player
   speed: 10
   movespeed: 0.5
-  attackdamage: 5
+  cooldowntime: 1
+  attackdamage: 20
+  attackrange: 0.3
   attackdelay: 0.25
 --- !u!114 &512071914427552648
 MonoBehaviour:
