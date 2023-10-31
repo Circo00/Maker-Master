@@ -48,7 +48,11 @@ public class EnemyHealthScript : MonoBehaviour
         blinktimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinktimer / blinkduration);
         float intensity = (lerp * blinkintensity) + 1.0f;
-        skinnedmeshrenderer.material.color = Color.white * intensity;
+        if (skinnedmeshrenderer != null)
+        {
+            skinnedmeshrenderer.material.color = Color.white * intensity;
+        }
+        
     }
 
     private void Die()
@@ -73,7 +77,11 @@ public class EnemyHealthScript : MonoBehaviour
         {
             _enemyscript.enabled = false;
             animator.SetBool("isDying", true);
-            skinnedmeshrenderer.material.color = Color.white * 1;
+            if (skinnedmeshrenderer != null)
+            {
+                skinnedmeshrenderer.material.color = Color.white * 1;
+            }
+                
             float randomPitch = Random.Range(minPitch, maxPitch);
             //audiosource.pitch = randomPitch;
             //audiosource.PlayOneShot(coinaudio);

@@ -45,7 +45,11 @@ public class PlayerHealthScript : MonoBehaviour
         blinktimer -= Time.deltaTime;
         float lerp = Mathf.Clamp01(blinktimer / blinkduration);
         float intensity = (lerp * blinkintensity) + 1.0f;
-        skinnedmeshrenderer.material.color = Color.white * intensity;
+        if(skinnedmeshrenderer != null)
+        {
+            skinnedmeshrenderer.material.color = Color.white * intensity;
+        }
+        
     }
 
     public void TakeDamage(int damagepoint)
