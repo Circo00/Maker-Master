@@ -34,5 +34,37 @@ public static class SaveSystem
         }
     }
 
-    
+    public static void SaveTutorialProgress(string tutprogressname)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/tutprogress.tut";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        TutorialProgressData tutprogressdata = new TutorialProgressData(tutprogressname);
+
+        formatter.Serialize(stream, tutprogressdata);
+        stream.Close();
+    }
+
+    public static TutorialProgressData LoadTutorialProgress()
+    {
+        string path = Application.persistentDataPath + "/tutprogress.tut";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            TutorialProgressData tutprogressdata = formatter.Deserialize(stream) as TutorialProgressData;
+            stream.Close();
+            return tutprogressdata;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in" + path);
+            return null;
+        }
+    }
+
+
+
+
 }

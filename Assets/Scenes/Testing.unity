@@ -738,7 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playercamera: {fileID: 1289652714}
-  offset: {x: 0, y: 4.53, z: -4.98}
+  offset: {x: 0, y: 9.1, z: -8.3}
 --- !u!1 &551220959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,6 +1692,89 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!1001 &966235484
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3112002647332820898, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 656.55176
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1567.3958
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -81.953735
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820924, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112002647332820925, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1565139498}
+    - target: {fileID: 3155953245946309984, guid: 9065d00a5f40c81418aba733660d2479,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9065d00a5f40c81418aba733660d2479, type: 3}
 --- !u!4 &999838495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 173391982624272085, guid: 80c117a72d5867341b0d710ca7b7005a,
@@ -2580,6 +2663,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540722301}
   m_CullTransparentMesh: 1
+--- !u!1 &1565139498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6460333518128960389, guid: 9065d00a5f40c81418aba733660d2479,
+    type: 3}
+  m_PrefabInstance: {fileID: 966235484}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1685518625 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1770232809860223336, guid: b8e21c5c1b22e8c4b9c66bba536edf33,

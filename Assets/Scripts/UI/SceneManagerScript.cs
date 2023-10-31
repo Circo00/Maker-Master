@@ -8,6 +8,7 @@ public class SceneManagerScript : MonoBehaviour
     // Start is called before the first frame update
     public Animator transition;
     public float transition_time;
+    
 
     void Start()
     {
@@ -32,4 +33,6 @@ public class SceneManagerScript : MonoBehaviour
 
         SceneManager.LoadScene(scenename);
     }
+
+    
 }
