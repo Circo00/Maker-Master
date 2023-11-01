@@ -23,6 +23,8 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     
     void Awake()
     {
+        string tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
+        
         InitializeScene();
         
     }
@@ -45,11 +47,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
 
         //scene checker
 
-        if (tutprogressdata == null)
-        {
-            UpdateNewProgress("buildtut");
-            tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
-        }
+        
 
         Debug.Log(tutprogressdata);
 

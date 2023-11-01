@@ -29,7 +29,8 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError("Save file not found in" + path);
+            SaveSkill();
+            LoadSkill();
             return null;
         }
     }
@@ -59,8 +60,25 @@ public static class SaveSystem
         }
         else
         {
-            Debug.Log("File not found");
-            return null;
+            
+            SaveTutorialProgress("buildtut");
+
+            return LoadTutorialProgress();
+        }
+    }
+
+    public static void ResetData()
+    {
+        foreach (var directory in Directory.GetDirectories(Application.persistentDataPath))
+        {
+            DirectoryInfo data_dir = new DirectoryInfo(directory);
+            data_dir.Delete(true);
+        }
+
+        foreach (var file in Directory.GetFiles(Application.persistentDataPath))
+        {
+            FileInfo file_info = new FileInfo(file);
+            file_info.Delete();
         }
     }
 

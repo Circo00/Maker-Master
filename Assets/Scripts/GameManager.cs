@@ -70,4 +70,9 @@ public class GameManager : MonoBehaviour
         return skilldata;
     }
 
+    public void ResetData()
+    {
+        SaveSystem.ResetData();
+    }
+
 }
