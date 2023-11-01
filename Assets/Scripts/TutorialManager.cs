@@ -101,9 +101,20 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
             StartCoroutine(PopInPanel(1, "You may press the \"Testing\" button to test your script."));
+            
+        }
+        else if (page == 3)
+        {
+            joystickfinger.SetActive(false);
+            moveblockfinger.SetActive(false);
+            testingfinger.SetActive(false);
+            taptocontinue.SetActive(false);
+            messagepanel.SetActive(true);
+            StartCoroutine(PopOutPanel(0));
+            DisableCanvas(1);
             SaveSystem.SaveTutorialProgress("playercontroltut");
         }
-        
+
         //display lightbulb
     }
 
@@ -126,17 +137,32 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
             StartCoroutine(PopInPanel(1, "Press the attack button to use your program."));
-            SaveSystem.SaveTutorialProgress("empty");
+            
+
         }
+        else if (page == 3)
+        {
+            joystickfinger.SetActive(false);
+            moveblockfinger.SetActive(false);
+            testingfinger.SetActive(false);
+            taptocontinue.SetActive(false);
+            messagepanel.SetActive(true);
+            StartCoroutine(PopOutPanel(0));
+            DisableCanvas(1);
+            SaveSystem.SaveTutorialProgress("empty");
+
+        }
+
     }
 
     IEnumerator PopInPanel(float delay, string message)
     {
 
+        
+        
+        yield return new WaitForSeconds(delay);
         TextMeshProUGUI messagepaneltext = messagepanel.GetComponentInChildren<TextMeshProUGUI>();
         messagepaneltext.text = message;
-        yield return new WaitForSeconds(delay);
-
         messagepanelanimation.SetTrigger("Pop In");
 
     }
@@ -148,6 +174,16 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(delay);
 
         messagepanelanimation.SetTrigger("Pop Out");
+
+    }
+
+    IEnumerator DisableCanvas(float delay)
+    {
+
+
+        yield return new WaitForSeconds(delay);
+        canvas.SetActive(false);
+
 
     }
 
