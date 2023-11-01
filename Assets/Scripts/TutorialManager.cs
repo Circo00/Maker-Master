@@ -15,6 +15,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     public GameObject testingfinger;
     public GameObject taptocontinue;
     public GameObject messagepanel;
+    public GameObject attackfinger;
     public GameObject canvas;
     private int page = 0;
 
@@ -91,6 +92,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             testingfinger.SetActive(false);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
+            attackfinger.SetActive(false);
             StartCoroutine(PopInPanel(1, "Put your finger on the block and drag it into the \"WHEN PRESS\" block."));
         }
         else if (page == 2)
@@ -100,7 +102,8 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             testingfinger.SetActive(true);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
-            StartCoroutine(PopInPanel(1, "You may press the \"Testing\" button to test your script."));
+            attackfinger.SetActive(false);
+            StartCoroutine(PopInPanel(0.5f, "You may press the \"Testing\" button to test your script."));
             
         }
         else if (page == 3)
@@ -110,8 +113,9 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             testingfinger.SetActive(false);
             taptocontinue.SetActive(false);
             messagepanel.SetActive(true);
+            attackfinger.SetActive(false);
             StartCoroutine(PopOutPanel(0));
-            DisableCanvas(1);
+            DisableCanvas(0.5f);
             SaveSystem.SaveTutorialProgress("playercontroltut");
         }
 
@@ -127,6 +131,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             testingfinger.SetActive(false);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
+            attackfinger.SetActive(false);
             StartCoroutine(PopInPanel(1, "Put your finger at the bottom left of the screen and drag to control the character"));
         }
         else if (page == 2)
@@ -136,7 +141,8 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             testingfinger.SetActive(false);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
-            StartCoroutine(PopInPanel(1, "Press the attack button to use your program."));
+            attackfinger.SetActive(true);
+            StartCoroutine(PopInPanel(0.5f, "Press the attack button to use your program."));
             
 
         }
@@ -147,8 +153,9 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             testingfinger.SetActive(false);
             taptocontinue.SetActive(false);
             messagepanel.SetActive(true);
+            attackfinger.SetActive(false);
             StartCoroutine(PopOutPanel(0));
-            DisableCanvas(1);
+            DisableCanvas(0.5f);
             SaveSystem.SaveTutorialProgress("empty");
 
         }
