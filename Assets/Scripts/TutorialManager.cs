@@ -19,7 +19,9 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     private int page = 0;
 
     //sample variable strings: rangedtut, repeattut
-    void Start()
+    
+    
+    void Awake()
     {
         InitializeScene();
         
@@ -46,6 +48,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         if (tutprogressdata == null)
         {
             UpdateNewProgress("buildtut");
+            tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
         }
 
         Debug.Log(tutprogressdata);
