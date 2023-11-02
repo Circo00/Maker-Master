@@ -133,7 +133,7 @@ public class playermovement : MonoBehaviour
             };
         }
 
-        Debug.Log(animator.GetBool("isAttacking"));
+        //Debug.Log(animator.GetBool("isAttacking"));
 
     }
 
