@@ -8,6 +8,8 @@ public class TutorialProgressData
 {
     public string tutprogress = "empty";
 
+    
+
     public TutorialProgressData(string tutprogress)
     {
         this.tutprogress = tutprogress;

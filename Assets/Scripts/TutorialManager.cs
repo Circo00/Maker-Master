@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 
 
+
 public class TutorialManager : MonoBehaviour, IPointerClickHandler
 {
     public Animator messagepanelanimation;
@@ -17,6 +18,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     public GameObject messagepanel;
     public GameObject attackfinger;
     public GameObject canvas;
+    public GameObject panel;
     private int page = 0;
 
     //sample variable strings: rangedtut, repeattut
@@ -87,6 +89,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         //display finger overlay
         if(page == 1)
         {
+            panel.SetActive(true);
             joystickfinger.SetActive(false);
             moveblockfinger.SetActive(true);
             testingfinger.SetActive(false);
@@ -97,6 +100,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         }
         else if (page == 2)
         {
+            panel.SetActive(true);
             joystickfinger.SetActive(false);
             moveblockfinger.SetActive(false);
             testingfinger.SetActive(true);
@@ -108,6 +112,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         }
         else if (page == 3)
         {
+            panel.SetActive(false);
             joystickfinger.SetActive(false);
             moveblockfinger.SetActive(false);
             testingfinger.SetActive(false);
@@ -126,6 +131,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     {
         if (page == 1)
         {
+            panel.SetActive(true);
             joystickfinger.SetActive(true);
             moveblockfinger.SetActive(false);
             testingfinger.SetActive(false);
@@ -136,6 +142,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         }
         else if (page == 2)
         {
+            panel.SetActive(true);
             joystickfinger.SetActive(false);
             moveblockfinger.SetActive(false);
             testingfinger.SetActive(false);
@@ -148,6 +155,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         }
         else if (page == 3)
         {
+            panel.SetActive(false);
             joystickfinger.SetActive(false);
             moveblockfinger.SetActive(false);
             testingfinger.SetActive(false);
@@ -192,6 +200,23 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         canvas.SetActive(false);
 
 
+    }
+
+
+
+
+    public void DisplayNotification(float popindelay, float popoutdelay, string message)
+    {
+        canvas.SetActive(true);
+        joystickfinger.SetActive(false);
+        moveblockfinger.SetActive(false);
+        testingfinger.SetActive(false);
+        taptocontinue.SetActive(false);
+        messagepanel.SetActive(true);
+        attackfinger.SetActive(false);
+        StartCoroutine(PopInPanel(popindelay, message));
+        StartCoroutine(PopOutPanel(popoutdelay));
+        DisableCanvas(3);
     }
 
 

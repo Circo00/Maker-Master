@@ -11,8 +11,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SaveSystem.SaveLevelData(level_to_unlock);
-        Debug.Log(SaveSystem.LoadLevelData());
+        //SaveSystem.SaveLevelData(level_to_unlock);
+        //Debug.Log(SaveSystem.LoadLevelData());
         EnableLevels();
     }
 
@@ -35,8 +35,9 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < leveldata; i++)
         {
             levellist[i].GetComponent<Button>().enabled = true;
-            levellist[i].GetComponent<Image>().color = new Color(89f / 255f, 102f / 255f, 174f / 255f);
+            levellist[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
         }
 
     }
+
 }

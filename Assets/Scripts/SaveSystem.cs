@@ -114,6 +114,56 @@ public static class SaveSystem
         }
     }
 
+    public static void UnlockBlock(string blockname)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/unlockedblock.bloc";
+        if (File.Exists(path))
+        {
+            
+            FileStream stream = new FileStream(path, FileMode.Open);
+            UnlockedBlocksData oldunlockedblockdata = formatter.Deserialize(stream) as UnlockedBlocksData;
+            stream.Close();
+
+            FileStream stream2 = new FileStream(path, FileMode.Create);
+            oldunlockedblockdata.UnlockBlock(blockname);
+            //UnlockedBlocksData newunlockedblockdata = oldunlockedblockdata;
+            formatter.Serialize(stream2, oldunlockedblockdata);
+            stream.Close();
+            
+        }
+        else
+        {
+            FileStream stream = new FileStream(path, FileMode.Create);
+            UnlockedBlocksData unlockedblockdata = new UnlockedBlocksData();
+            formatter.Serialize(stream, unlockedblockdata);
+            stream.Close();
+        }
+
+
+        
+    }
+
+    public static UnlockedBlocksData LoadUnlockedBlock()
+    {
+        string path = Application.persistentDataPath + "/unlockedblock.bloc";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            UnlockedBlocksData unlockedblockdata = formatter.Deserialize(stream) as UnlockedBlocksData;
+            stream.Close();
+            return unlockedblockdata;
+        }
+        else
+        {
+
+            UnlockBlock("haha dumb dumb nothing here");
+
+            return LoadUnlockedBlock();
+        }
+    }
+
 
 
 

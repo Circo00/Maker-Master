@@ -5,6 +5,9 @@ using UnityEngine;
 public class LevelComplete : MonoBehaviour
 {
     public GameObject canvas;
+    public int unlocklevel;
+    public string unlockskill;
+    public TutorialManager tutorialmanager;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,20 @@ public class LevelComplete : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Activated Level Complete");
+            if(SaveSystem.LoadLevelData().level < unlocklevel)
+            {
+                SaveSystem.SaveLevelData(unlocklevel);
+                Debug.Log("unlocked");
+            }
+            //if not yet unlocked
+            if (!SaveSystem.LoadUnlockedBlock().GetUnlockedBlockData(unlockskill))
+            {
+                
+                SaveSystem.UnlockBlock(unlockskill);
+                
+                tutorialmanager.DisplayNotification(0, 3, "New Skill Unlocked!");
+            }
+            
             canvas.SetActive(true);
             
         }
