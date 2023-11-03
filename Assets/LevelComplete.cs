@@ -7,6 +7,7 @@ public class LevelComplete : MonoBehaviour
     public GameObject canvas;
     public int unlocklevel;
     public string unlockskill;
+    public string tutprogress;
     public TutorialManager tutorialmanager;
 
     // Start is called before the first frame update
@@ -36,7 +37,7 @@ public class LevelComplete : MonoBehaviour
             {
                 
                 SaveSystem.UnlockBlock(unlockskill);
-                
+                SaveSystem.SaveTutorialProgress(tutprogress);
                 tutorialmanager.DisplayNotification(0, 3, "New Skill Unlocked!");
             }
             

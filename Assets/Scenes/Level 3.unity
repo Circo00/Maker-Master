@@ -5257,4 +5257,5 @@ MonoBehaviour:
   canvas: {fileID: 1922890879}
   unlocklevel: 4
   unlockskill: ranged2
+  tutprogress: ranged2intro
   tutorialmanager: {fileID: 1941989759}

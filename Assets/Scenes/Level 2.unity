@@ -5257,4 +5257,5 @@ MonoBehaviour:
   canvas: {fileID: 1922890879}
   unlocklevel: 3
   unlockskill: melee2
+  tutprogress: melee2intro
   tutorialmanager: {fileID: 1941989759}

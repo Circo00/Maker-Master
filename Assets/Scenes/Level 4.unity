@@ -5257,4 +5257,5 @@ MonoBehaviour:
   canvas: {fileID: 1922890879}
   unlocklevel: 5
   unlockskill: repeat10
+  tutprogress: repeat10intro
   tutorialmanager: {fileID: 1941989759}
