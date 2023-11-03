@@ -1,5 +1,94 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2368154668064106052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3439087236013311468}
+  - component: {fileID: 8480585615600245147}
+  - component: {fileID: 1034199290795662020}
+  - component: {fileID: 8621974767113050160}
+  m_Layer: 5
+  m_Name: Back Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3439087236013311468
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368154668064106052}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7018856962344990993}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -395, y: 841}
+  m_SizeDelta: {x: 300, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8480585615600245147
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368154668064106052}
+  m_CullTransparentMesh: 1
+--- !u!114 &1034199290795662020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368154668064106052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 766dc640eb286f641a134362e4b860a0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!225 &8621974767113050160
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2368154668064106052}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &3112002647332820898
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,6 +146,8 @@ MonoBehaviour:
   newgamefinger: {fileID: 4661741675253624374}
   equiptmentfinger: {fileID: 8526951940693575517}
   panel: {fileID: 3201385437796301210}
+  backfinger: {fileID: 2368154668064106052}
+  selectlevelfinger: {fileID: 4033163183563011635}
 --- !u!95 &5694838141121112347
 Animator:
   serializedVersion: 5
@@ -164,6 +255,7 @@ GameObject:
   - component: {fileID: 6120771584216844335}
   - component: {fileID: 4796481285674224020}
   - component: {fileID: 6489180787869042005}
+  - component: {fileID: 1559815340144156810}
   m_Layer: 5
   m_Name: Attack Finger
   m_TagString: Untagged
@@ -229,6 +321,107 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1559815340144156810
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3656254328087937789}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!1 &4033163183563011635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5269006901640020875}
+  - component: {fileID: 2394685331076292324}
+  - component: {fileID: 5235036445715095277}
+  - component: {fileID: 5285324359635917425}
+  m_Layer: 5
+  m_Name: Level Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5269006901640020875
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033163183563011635}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7018856962344990993}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 18, y: 449}
+  m_SizeDelta: {x: 300, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2394685331076292324
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033163183563011635}
+  m_CullTransparentMesh: 1
+--- !u!114 &5235036445715095277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033163183563011635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 766dc640eb286f641a134362e4b860a0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!225 &5285324359635917425
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033163183563011635}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4114505557496906551
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +433,7 @@ GameObject:
   - component: {fileID: 5281475626204509891}
   - component: {fileID: 542325610768907359}
   - component: {fileID: 2151117862530647484}
+  - component: {fileID: 4799513158826352835}
   m_Layer: 5
   m_Name: JoyStick Finger
   m_TagString: Untagged
@@ -305,6 +499,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &4799513158826352835
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114505557496906551}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4515738993374455512
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +522,7 @@ GameObject:
   - component: {fileID: 2882198119061777771}
   - component: {fileID: 6619753496941819416}
   - component: {fileID: 5830140686511731445}
+  - component: {fileID: 2857217322841986451}
   m_Layer: 5
   m_Name: Moveblock Finger
   m_TagString: Untagged
@@ -381,6 +588,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &2857217322841986451
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4515738993374455512}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &4661741675253624374
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +611,7 @@ GameObject:
   - component: {fileID: 9117404896048568711}
   - component: {fileID: 2933192545815646698}
   - component: {fileID: 2690045816022871718}
+  - component: {fileID: 3924295871257052683}
   m_Layer: 5
   m_Name: New Game Finger
   m_TagString: Untagged
@@ -457,6 +677,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3924295871257052683
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661741675253624374}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5694838139497560637
 GameObject:
   m_ObjectHideFlags: 0
@@ -604,6 +836,7 @@ GameObject:
   - component: {fileID: 5694838139802994640}
   - component: {fileID: 5694838139802994643}
   - component: {fileID: 5694838139802994642}
+  - component: {fileID: 5677659912832337657}
   m_Layer: 5
   m_Name: Testing Finger
   m_TagString: Untagged
@@ -669,6 +902,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &5677659912832337657
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5694838139802994641}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5694838140466639441
 GameObject:
   m_ObjectHideFlags: 0
@@ -680,6 +925,7 @@ GameObject:
   - component: {fileID: 5694838140466639440}
   - component: {fileID: 5694838140466639442}
   - component: {fileID: 5694838140466639443}
+  - component: {fileID: 7200902064278619621}
   m_Layer: 5
   m_Name: MessagePanel
   m_TagString: Untagged
@@ -747,6 +993,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &7200902064278619621
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5694838140466639441}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5694838140602438912
 GameObject:
   m_ObjectHideFlags: 0
@@ -999,6 +1257,8 @@ RectTransform:
   - {fileID: 6120771584216844335}
   - {fileID: 9117404896048568711}
   - {fileID: 8285376135471866800}
+  - {fileID: 3439087236013311468}
+  - {fileID: 5269006901640020875}
   m_Father: {fileID: 3112002647332820924}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1080,6 +1340,7 @@ GameObject:
   - component: {fileID: 8285376135471866800}
   - component: {fileID: 5858437871317949423}
   - component: {fileID: 5531088912597850884}
+  - component: {fileID: 3336592143831382675}
   m_Layer: 5
   m_Name: Equiptment Finger
   m_TagString: Untagged
@@ -1145,3 +1406,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3336592143831382675
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526951940693575517}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

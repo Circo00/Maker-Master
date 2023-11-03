@@ -21,21 +21,15 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     public GameObject newgamefinger;
     public GameObject equiptmentfinger;
     public GameObject panel;
+    public GameObject backfinger;
+    public GameObject selectlevelfinger;
     private int page = 0;
 
     //sample variable strings: rangedtut, repeattut
-    
-    
-    void Awake()
-    {
-        
-        
-    }
 
     void Start()
     {
         string tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
-
         InitializeScene();
     }
 
@@ -52,40 +46,59 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         string currentscene = SceneManager.GetActiveScene().name;
         string tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
 
-        //enable canvas before starting tutorial!!!!
+        canvas.SetActive(true);
+        panel.SetActive(false);
+        joystickfinger.SetActive(false);
+        moveblockfinger.SetActive(false);
+        testingfinger.SetActive(false);
+        taptocontinue.SetActive(false);
+        messagepanel.SetActive(false);
+        attackfinger.SetActive(false);
+        newgamefinger.SetActive(false);
+        equiptmentfinger.SetActive(false);
+        backfinger.SetActive(false);
+        selectlevelfinger.SetActive(false);
 
-
-        //scene checker
-
-
-        
-
-        if (currentscene == "Equiptment" && tutprogressdata == "buildtut")
+        if (currentscene == "Main Menu" && tutprogressdata == "buildtut")
         {
+            PointToScene("equiptment");
+        }
+        else if (currentscene == "Main Menu" && tutprogressdata == "selectleveltut")
+        {
+
+            PointToScene("new game");
+        }
+        else if (currentscene == "Level Selection" && tutprogressdata == "selectleveltut")
+        {
+            selectlevelfinger.SetActive(true);
+            SaveSystem.SaveTutorialProgress("leveltutorial");
+
+        }
+        else if (currentscene == "Level 1" && tutprogressdata == "leveltutorial")
+        {
+            DisplayNotification(0f, 5f, "Try to fight the enemies, and navigate yourself to the end of the level!");
             
+            SaveSystem.SaveTutorialProgress("empty");
+
+        }
+        else if (currentscene == "Equiptment" && tutprogressdata == "buildtut")
+        {
             page++;
             BuildingTutorial(page);
-            
         }
         else if (currentscene == "Testing" && tutprogressdata == "playercontroltut")
         {
             page++;
             ControlsTutorial();
-            
         }
         else if (currentscene == "Main Menu" && (tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro"))
         {
-            Debug.Log("Point to scene");
-            Debug.Log(currentscene);
-            Debug.Log(tutprogressdata);
             PointToScene("equiptment");
-
         }
         else if (currentscene == "Equiptment" && (tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro"))
         {
             Debug.Log("Explain block");
             ExplainBlock(tutprogressdata);
-
         }
         else
         {
@@ -95,61 +108,38 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     public void UpdateNewProgress(string tutprogress)
     {
         SaveSystem.SaveTutorialProgress(tutprogress);
-
     }
 
     public void UpdateNull()
     {
         SaveSystem.SaveTutorialProgress(null);
-
     }
 
     public void BuildingTutorial(int page)
     {
-        //display finger overlay
         if(page == 1)
         {
             panel.SetActive(true);
-            joystickfinger.SetActive(false);
             moveblockfinger.SetActive(true);
-            testingfinger.SetActive(false);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
-            attackfinger.SetActive(false);
-            newgamefinger.SetActive(false);
-            equiptmentfinger.SetActive(false);
             StartCoroutine(PopInPanel(1, "Put your finger on the block and drag it into the \"WHEN PRESS\" block."));
         }
         else if (page == 2)
         {
             panel.SetActive(true);
-            joystickfinger.SetActive(false);
-            moveblockfinger.SetActive(false);
             testingfinger.SetActive(true);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
-            attackfinger.SetActive(false);
-            newgamefinger.SetActive(false);
-            equiptmentfinger.SetActive(false);
-            StartCoroutine(PopInPanel(0.5f, "You may press the \"Testing\" button to test your script."));
-            
+            StartCoroutine(PopInPanel(0.5f, "You may press the \"Testing\" button to test your script."));  
         }
         else if (page == 3)
         {
-            panel.SetActive(false);
-            joystickfinger.SetActive(false);
-            moveblockfinger.SetActive(false);
-            testingfinger.SetActive(false);
-            taptocontinue.SetActive(false);
             messagepanel.SetActive(true);
-            attackfinger.SetActive(false);
-            newgamefinger.SetActive(false);
-            equiptmentfinger.SetActive(false);
             StartCoroutine(PopOutPanel(0));
             DisableCanvas(0.5f);
             SaveSystem.SaveTutorialProgress("playercontroltut");
         }
-
         //display lightbulb
     }
 
@@ -159,96 +149,55 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         {
             panel.SetActive(true);
             joystickfinger.SetActive(true);
-            moveblockfinger.SetActive(false);
-            testingfinger.SetActive(false);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
-            attackfinger.SetActive(false);
-            newgamefinger.SetActive(false);
-            equiptmentfinger.SetActive(false);
             StartCoroutine(PopInPanel(1, "Put your finger at the bottom left of the screen and drag to control the character"));
         }
         else if (page == 2)
         {
             panel.SetActive(true);
-            joystickfinger.SetActive(false);
-            moveblockfinger.SetActive(false);
-            testingfinger.SetActive(false);
             taptocontinue.SetActive(true);
             messagepanel.SetActive(true);
             attackfinger.SetActive(true);
-            newgamefinger.SetActive(false);
-            equiptmentfinger.SetActive(false);
             StartCoroutine(PopInPanel(0.5f, "Press the attack button to use your program."));
-            
-
         }
         else if (page == 3)
         {
-            panel.SetActive(false);
-            joystickfinger.SetActive(false);
-            moveblockfinger.SetActive(false);
-            testingfinger.SetActive(false);
-            taptocontinue.SetActive(false);
             messagepanel.SetActive(true);
-            attackfinger.SetActive(false);
-            newgamefinger.SetActive(false);
-            equiptmentfinger.SetActive(false);
+            backfinger.SetActive(true);
             StartCoroutine(PopOutPanel(0));
-            DisableCanvas(0.5f);
-            SaveSystem.SaveTutorialProgress("empty");
+            DisplayNotification(0.5f, 5, "You may press the back button when you are familiar with the controls.");
+            SaveSystem.SaveTutorialProgress("selectleveltut");
 
         }
-
+        
     }
 
     IEnumerator PopInPanel(float delay, string message)
     {
-
-        
-        
         yield return new WaitForSeconds(delay);
         TextMeshProUGUI messagepaneltext = messagepanel.GetComponentInChildren<TextMeshProUGUI>();
         messagepaneltext.text = message;
         messagepanelanimation.SetTrigger("Pop In");
-
     }
 
     IEnumerator PopOutPanel(float delay)
-    {
-
-        
+    {      
         yield return new WaitForSeconds(delay);
-
         messagepanelanimation.SetTrigger("Pop Out");
-
     }
 
     IEnumerator DisableCanvas(float delay)
     {
-
-
         yield return new WaitForSeconds(delay);
         canvas.SetActive(false);
-
-
     }
-
-
 
 
     public void DisplayNotification(float popindelay, float popoutdelay, string message)
     {
         canvas.SetActive(true);
-        joystickfinger.SetActive(false);
-        moveblockfinger.SetActive(false);
-        testingfinger.SetActive(false);
-        taptocontinue.SetActive(false);
         messagepanel.SetActive(true);
-        attackfinger.SetActive(false);
-        newgamefinger.SetActive(false);
-        equiptmentfinger.SetActive(false);
-        panel.SetActive(false);
         StartCoroutine(PopInPanel(popindelay, message));
         StartCoroutine(PopOutPanel(popoutdelay));
         DisableCanvas(3);
@@ -259,31 +208,12 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         if(scene == "new game")
         {
             canvas.SetActive(true);
-            joystickfinger.SetActive(false);
-            moveblockfinger.SetActive(false);
-            testingfinger.SetActive(false);
-            taptocontinue.SetActive(false);
-            messagepanel.SetActive(false);
-            attackfinger.SetActive(false);
             newgamefinger.SetActive(true);
-            equiptmentfinger.SetActive(false);
-            panel.SetActive(false);
-            //start new game tut
         }
         else if (scene == "equiptment")
         {
             canvas.SetActive(true);
-            joystickfinger.SetActive(false);
-            moveblockfinger.SetActive(false);
-            testingfinger.SetActive(false);
-            taptocontinue.SetActive(false);
-            messagepanel.SetActive(false);
-            attackfinger.SetActive(false);
-            newgamefinger.SetActive(false);
             equiptmentfinger.SetActive(true);
-            panel.SetActive(false);
-            
-            //start new block intro
         }
     }
 
