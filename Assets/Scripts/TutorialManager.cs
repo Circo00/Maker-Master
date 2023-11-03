@@ -28,10 +28,15 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     
     void Awake()
     {
+        
+        
+    }
+
+    void Start()
+    {
         string tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
-        
+
         InitializeScene();
-        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -46,15 +51,14 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     {
         string currentscene = SceneManager.GetActiveScene().name;
         string tutprogressdata = SaveSystem.LoadTutorialProgress().tutprogress;
-        
+
         //enable canvas before starting tutorial!!!!
 
 
         //scene checker
 
-        
 
-        //Debug.Log(tutprogressdata);
+        
 
         if (currentscene == "Equiptment" && tutprogressdata == "buildtut")
         {
@@ -69,14 +73,18 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             ControlsTutorial();
             
         }
-        else if (currentscene == "Main Menu" && tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro")
+        else if (currentscene == "Main Menu" && (tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro"))
         {
+            Debug.Log("Point to scene");
+            Debug.Log(currentscene);
+            Debug.Log(tutprogressdata);
             PointToScene("equiptment");
 
         }
-        else if (currentscene == "Equiptment" && tutprogressdata == "melee1intro")
+        else if (currentscene == "Equiptment" && (tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro"))
         {
-            //playnoti
+            Debug.Log("Explain block");
+            ExplainBlock(tutprogressdata);
 
         }
         else
@@ -274,9 +282,30 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             newgamefinger.SetActive(false);
             equiptmentfinger.SetActive(true);
             panel.SetActive(false);
-            SaveSystem.SaveTutorialProgress("newblocktut");
+            
             //start new block intro
         }
+    }
+
+    public void ExplainBlock(string tutprog)
+    {
+        if(tutprog == "melee2intro")
+        {
+            DisplayNotification(0, 5, "This is the second melee block that you can use.");
+        }
+        if (tutprog == "ranged1intro")
+        {
+            DisplayNotification(0, 5, "Calling this skill fires a bullet towards the enemies.");
+        }
+        if(tutprog == "ranged2intro")
+        {
+            DisplayNotification(0, 5, "This is the second ranged block that you can use.");
+        }
+        if(tutprog == "repeat10intro")
+        {
+            DisplayNotification(0, 5, "This block allows you to repeat the actions inside it for 10 times when activated.");
+        }
+        SaveSystem.SaveTutorialProgress("empty");
     }
 
 
