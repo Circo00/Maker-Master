@@ -240,6 +240,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         attackfinger.SetActive(false);
         newgamefinger.SetActive(false);
         equiptmentfinger.SetActive(false);
+        panel.SetActive(false);
         StartCoroutine(PopInPanel(popindelay, message));
         StartCoroutine(PopOutPanel(popoutdelay));
         DisableCanvas(3);
