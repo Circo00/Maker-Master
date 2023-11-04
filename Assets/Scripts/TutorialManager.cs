@@ -63,6 +63,12 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         {
             PointToScene("equiptment");
         }
+        else if (currentscene == "Equiptment" && tutprogressdata == "selectleveltut")
+        {
+
+            backfinger.SetActive(true);
+
+        }
         else if (currentscene == "Main Menu" && tutprogressdata == "selectleveltut")
         {
 
