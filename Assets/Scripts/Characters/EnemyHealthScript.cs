@@ -85,7 +85,7 @@ public class EnemyHealthScript : MonoBehaviour
             float randomPitch = Random.Range(minPitch, maxPitch);
             //audiosource.pitch = randomPitch;
             //audiosource.PlayOneShot(coinaudio);
-            Invoke("Die", 2);
+            Invoke("Die", 1);
             //footstep.SetActive(false);
             
             
