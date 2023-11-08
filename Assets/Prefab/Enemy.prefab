@@ -35,7 +35,7 @@ Transform:
   - {fileID: 3373892178147151888}
   - {fileID: 3373892177598312013}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3373892176525903097
 Rigidbody:
@@ -45,7 +45,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3373892176525903090}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -77,10 +77,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  speed: 1000
+  speed: 100
   movespeed: 1
   cooldowntime: 1
-  attackdamage: 20
+  attackdamage: 1
   attackrange: 1
   attackdelay: 0.5
 --- !u!114 &3373892176525903100
@@ -338,8 +338,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3373892178147151888}
-  - component: {fileID: 3373892178147151890}
   - component: {fileID: 3373892178147151891}
+  - component: {fileID: 681361929988152550}
   m_Layer: 0
   m_Name: CrossyRoad Unicorn
   m_TagString: Enemy
@@ -363,27 +363,6 @@ Transform:
   m_Father: {fileID: 3373892176525903102}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3373892178147151890
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373892178147151889}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.350926, y: 1.1244164, z: 0.650677}
-  m_Center: {x: 0, y: 0.16748357, z: 0.0023925602}
 --- !u!95 &3373892178147151891
 Animator:
   serializedVersion: 5
@@ -404,6 +383,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!136 &681361929988152550
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3373892178147151889}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.23259334
+  m_Height: 1.0990064
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.16831148, z: 0.00959301}
 --- !u!1001 &3373892178288244161
 PrefabInstance:
   m_ObjectHideFlags: 0
