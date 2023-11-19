@@ -224,6 +224,7 @@ MonoBehaviour:
   shootablecount: 30
   gamemanager: {fileID: 832979720}
   footsteps: {fileID: 149346037}
+  attacksound: {fileID: 8300000, guid: 481ba640a3af6d14780167ec88776395, type: 3}
   voice:
   - {fileID: 8300000, guid: 8f4983c10b2759a4ca133c2c0ea9bd95, type: 3}
   - {fileID: 8300000, guid: 54b79dd40c07ec240a7624e131301f05, type: 3}

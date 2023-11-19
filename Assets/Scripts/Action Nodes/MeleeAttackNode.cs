@@ -7,6 +7,7 @@ public class MeleeAttackNode : Node
 {
     private Animator animator;
     private Transform _transform;
+
     private float attackrange;
     private int attackdamage;
     private float spreadangle = 30f;
@@ -23,6 +24,8 @@ public class MeleeAttackNode : Node
     private bool waitingtoattack = false;
     private bool doneattack = false;
     private bool done = false;
+
+    
 
     public MeleeAttackNode(Animator animator, Transform transform, float attackrange, int attackdamage, float spreadangle, int numrays, float cooldowntime)
     {
@@ -77,7 +80,9 @@ public class MeleeAttackNode : Node
                 EnemyHealthScript enemyhealth = hit.collider.GetComponentInParent<EnemyHealthScript>();
                 if (enemyhealth != null)
                 {
+                    
                     enemyhealth.TakeDamage(attackdamage);
+                    
                     CameraShaker.Instance.ShakeOnce(2f, 5f, .05f, .05f);
                 }
             }

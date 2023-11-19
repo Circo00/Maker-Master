@@ -27,6 +27,7 @@ public class EnemyHealthScript : MonoBehaviour
     public GameObject footstep;
     public AudioSource audiosource;
     public AudioClip coinaudio;
+    
     public float minPitch = 0.8f;
     public float maxPitch = 1.2f;
 
@@ -83,10 +84,10 @@ public class EnemyHealthScript : MonoBehaviour
             }
                 
             float randomPitch = Random.Range(minPitch, maxPitch);
-            //audiosource.pitch = randomPitch;
-            //audiosource.PlayOneShot(coinaudio);
+            audiosource.pitch = randomPitch;
+            audiosource.PlayOneShot(coinaudio);
             Invoke("Die", 1);
-            //footstep.SetActive(false);
+            footstep.SetActive(false);
             
             
         }

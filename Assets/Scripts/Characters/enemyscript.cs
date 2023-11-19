@@ -27,10 +27,11 @@ public class enemyscript : MonoBehaviour
     public float attackrange = 0.3f;
 
     public float attackdelay = 0.5f;
-   
+    [Space(10)]
 
-    
-
+    [Header("Audio")]
+    public AudioSource audiosource;
+    public AudioClip attacksound;
 
 
     private void Start()
@@ -141,6 +142,7 @@ public class enemyscript : MonoBehaviour
             if (playerhealth != null)
             {
                 playerhealth.TakeDamage(attackdamage);
+                audiosource.PlayOneShot(attacksound);
                 CameraShaker.Instance.ShakeOnce(1f, 5f, .2f, .2f);
 
             }

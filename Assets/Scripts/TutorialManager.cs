@@ -23,6 +23,11 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
     public GameObject panel;
     public GameObject backfinger;
     public GameObject selectlevelfinger;
+
+    public AudioSource audiosource;
+    public AudioClip panelout;
+    
+
     private int page = 0;
 
     //sample variable strings: rangedtut, repeattut
@@ -184,6 +189,7 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(delay);
         TextMeshProUGUI messagepaneltext = messagepanel.GetComponentInChildren<TextMeshProUGUI>();
         messagepaneltext.text = message;
+        audiosource.PlayOneShot(panelout);
         messagepanelanimation.SetTrigger("Pop In");
     }
 

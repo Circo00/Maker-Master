@@ -7,6 +7,9 @@ using UnityEngine.EventSystems;
 public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
+    public AudioClip blockattach;
+    public AudioSource audiosource;
+
     [HideInInspector]public Transform parentafterdrag;
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -28,6 +31,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         Debug.Log("End Dragging");
         transform.SetParent(parentafterdrag);
+        if(parentafterdrag.name == "When Pressed" || parentafterdrag.name == "Repeat 10")
+        {
+            audiosource.PlayOneShot(blockattach);
+        }
+        
         image.raycastTarget = true;
     }
 

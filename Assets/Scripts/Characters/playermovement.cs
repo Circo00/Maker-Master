@@ -49,6 +49,8 @@ public class playermovement : MonoBehaviour
     [Header("Audio")]
     public GameObject footsteps;
     private AudioSource audiosource;
+    public AudioClip attacksound;
+    
     public List<AudioClip> voice = new List<AudioClip>();
     public float minInterval = 13f;
     public float maxInterval = 15f;

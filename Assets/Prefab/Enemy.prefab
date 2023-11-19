@@ -83,6 +83,8 @@ MonoBehaviour:
   attackdamage: 1
   attackrange: 1
   attackdelay: 0.5
+  audiosource: {fileID: 3373892176525903101}
+  attacksound: {fileID: 8300000, guid: 481ba640a3af6d14780167ec88776395, type: 3}
 --- !u!114 &3373892176525903100
 MonoBehaviour:
   m_ObjectHideFlags: 0

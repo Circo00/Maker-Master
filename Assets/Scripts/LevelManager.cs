@@ -30,12 +30,14 @@ public class LevelManager : MonoBehaviour
         {
             level.GetComponent<Button>().enabled = false;
             level.GetComponent<Image>().color = new Color(0.21f, 0.23f, 0.35f);
+            level.transform.GetChild(0).GetComponent<Image>().color = new Color(0.21f, 0.23f, 0.35f);
         }
 
         for (int i = 0; i < leveldata; i++)
         {
             levellist[i].GetComponent<Button>().enabled = true;
             levellist[i].GetComponent<Image>().color = new Color(1f, 1f, 1f);
+            levellist[i].transform.GetChild(0).GetComponent<Image>().color = new Color(1f, 1f, 1f);
         }
 
     }

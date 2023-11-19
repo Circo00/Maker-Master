@@ -59,7 +59,7 @@ public class PlayerHealthScript : MonoBehaviour
 
         blinktimer = blinkduration;
 
-        Debug.Log("Damage Taken");
+        //Debug.Log("Damage Taken");
         if (currenthealth <= 0)
         {
             _playermovement.enabled = false;

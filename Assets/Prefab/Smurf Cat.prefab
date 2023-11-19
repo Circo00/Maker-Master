@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 2740169027678943021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.4593239, y: 1.67, z: -3.323}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2417782412724038264}
@@ -205,12 +205,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  speed: 10
-  movespeed: 2
+  speed: 30
+  movespeed: 4
   cooldowntime: 0.3
   attackdamage: 1
-  attackrange: 0.3
+  attackrange: 1
   attackdelay: 0.3
+  audiosource: {fileID: 1418847920475529931}
+  attacksound: {fileID: 8300000, guid: 481ba640a3af6d14780167ec88776395, type: 3}
 --- !u!114 &2740169027678943020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d2e2d2b047c28418ad1cbcc7a46739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 20
+  maxhealth: 1000
   blinkintensity: 1
   blinkduration: 0.1
   floatingtext: {fileID: 2802477769318320244, guid: 18db9293c275ef14a954293ceced206c,
@@ -231,6 +233,8 @@ MonoBehaviour:
   footstep: {fileID: 1378904217370986443}
   audiosource: {fileID: 1418847920475529931}
   coinaudio: {fileID: 8300000, guid: 773bd565dd870bf408c9a7550d0cb2ad, type: 3}
+  minPitch: 0.8
+  maxPitch: 1.2
 --- !u!82 &1418847920475529931
 AudioSource:
   m_ObjectHideFlags: 0

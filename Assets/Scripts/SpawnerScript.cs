@@ -7,9 +7,10 @@ public class SpawnerScript : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject spawnobject;
-
+    private int enemyCount;
     private float previoustime = 0;
     public float cooldowntime = 2f;
+    public float enemylimit = 0;
     void Start()
     {
         Instantiate(spawnobject, transform.position, Quaternion.identity);
@@ -21,7 +22,14 @@ public class SpawnerScript : MonoBehaviour
         if (Time.time - previoustime >= cooldowntime)
         {
             previoustime = Time.time;
-            SpawnObject();
+            CountEnemies();
+            Debug.Log(enemyCount);
+            if(enemyCount <= enemylimit)
+            {
+                SpawnObject();
+                
+            }
+            
         }
         
     }
@@ -29,5 +37,14 @@ public class SpawnerScript : MonoBehaviour
     void SpawnObject()
     {
         Instantiate(spawnobject, transform.position, Quaternion.identity);
+    }
+
+    private void CountEnemies()
+    {
+        // Find all game objects with the "enemies" tag
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        // Update the enemy count
+        enemyCount = enemies.Length;
     }
 }
