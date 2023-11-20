@@ -78,11 +78,17 @@ public class MeleeAttackNode : Node
             if (Physics.Raycast(_transform.position, rayDirection, out hit, attackrange))
             {
                 EnemyHealthScript enemyhealth = hit.collider.GetComponentInParent<EnemyHealthScript>();
+                NoobEnemyHealth noobenemyhealth = hit.collider.GetComponentInParent<NoobEnemyHealth>();
                 if (enemyhealth != null)
                 {
                     
                     enemyhealth.TakeDamage(attackdamage);
                     
+                    CameraShaker.Instance.ShakeOnce(2f, 5f, .05f, .05f);
+                }
+                if (noobenemyhealth != null)
+                {
+                    noobenemyhealth.TakeDamage(attackdamage);
                     CameraShaker.Instance.ShakeOnce(2f, 5f, .05f, .05f);
                 }
             }

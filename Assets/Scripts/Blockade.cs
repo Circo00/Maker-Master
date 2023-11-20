@@ -31,7 +31,8 @@ public class Blockade : MonoBehaviour
     private void CountEnemies()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if(enemies.Length == 0)
+        GameObject[] enemies2 = GameObject.FindGameObjectsWithTag("Enemy 2");
+        if (enemies.Length == 0 && enemies2.Length == 0)
         {
             //GameObject spawnedeffect = Instantiate(effect, transform.position, transform.rotation);
             

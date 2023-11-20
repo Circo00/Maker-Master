@@ -47,6 +47,7 @@ public class BombScript : MonoBehaviour
         {
             Rigidbody nearby_rb = nearby.GetComponent<Rigidbody>();
             EnemyHealthScript enemyhealthscript = nearby.GetComponentInParent<EnemyHealthScript>();
+            NoobEnemyHealth noobenemyhealth = nearby.GetComponentInParent<NoobEnemyHealth>();
             if (nearby_rb != null)
             {
                 nearby_rb.AddExplosionForce(explosionforce, rb.position, radius);
@@ -54,6 +55,10 @@ public class BombScript : MonoBehaviour
             if (enemyhealthscript != null)
             {
                 enemyhealthscript.TakeDamage(explosiondamage);
+            }
+            if (noobenemyhealth != null)
+            {
+                noobenemyhealth.TakeDamage(explosiondamage);
             }
         }
     }

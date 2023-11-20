@@ -29,5 +29,13 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
 
         }
+        if (collision.collider.transform.parent != null && collision.collider.transform.parent.tag == "Enemy 2")
+        {
+            NoobEnemyHealth enemyhealth = collision.collider.transform.parent.GetComponent<NoobEnemyHealth>();
+            enemyhealth.TakeDamage(damage);
+            //Debug.Log("Hit Enemy!!!!");
+            Destroy(gameObject);
+
+        }
     }
 }
