@@ -44,6 +44,7 @@ public class playermovement : MonoBehaviour
     private Transform header;
     private List<Node> whenpressed = new List<Node>();
     public GameManager gamemanager;
+    public GameObject machinegun;
     [Space(10)]
 
     [Header("Audio")]
@@ -59,7 +60,7 @@ public class playermovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        machinegun.SetActive(false);
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         
@@ -94,6 +95,7 @@ public class playermovement : MonoBehaviour
             else if (nodeblock.name.Contains("Ranged"))
             {
                 outputlist.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
+                machinegun.SetActive(true);
             }
             else if (nodeblock.name.Contains("Repeat"))
             {
