@@ -14,7 +14,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("Start Dragging");
+        //Debug.Log("Start Dragging");
         parentafterdrag = transform.parent;
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
@@ -23,13 +23,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("Dragging");
+        //Debug.Log("Dragging");
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Dragging");
+        //Debug.Log("End Dragging");
         transform.SetParent(parentafterdrag);
         if(parentafterdrag.name == "When Pressed" || parentafterdrag.name == "Repeat 10")
         {

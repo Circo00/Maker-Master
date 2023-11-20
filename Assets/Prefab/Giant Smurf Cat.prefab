@@ -1401,7 +1401,7 @@ MonoBehaviour:
   movespeed: 1
   cooldowntime: 5
   attackdamage: 50
-  attackrange: 2.5
+  attackrange: 5
   attackdelay: 1.5
   audiosource: {fileID: 1939407651471192515}
   attacksound: {fileID: 8300000, guid: 481ba640a3af6d14780167ec88776395, type: 3}

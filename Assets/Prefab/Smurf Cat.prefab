@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d2e2d2b047c28418ad1cbcc7a46739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 1000
+  maxhealth: 20
   blinkintensity: 1
   blinkduration: 0.1
   floatingtext: {fileID: 2802477769318320244, guid: 18db9293c275ef14a954293ceced206c,
