@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
             {
                 SkillParentSetting(nodeblock.children, currentchild);
             }
+            if (nodeblock.name.Contains("Shoot"))
+            {
+                SkillParentSetting(nodeblock.children, currentchild);
+            }
         }
 
     }

@@ -217,8 +217,8 @@ MonoBehaviour:
   numrays: 10
   attackdelay: 0.5
   shootpos: {fileID: 329902307}
-  shootable: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba,
-    type: 3}
+  bullet: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba, type: 3}
+  bomb: {fileID: 1928289337247548569, guid: aed8f508380ce674dacc3437a705acff, type: 3}
   shootableforce: 1
   shootingoffset: 0.1
   firingrate: 0.05
@@ -2595,7 +2595,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 805bd292716600141976860a952ec840, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.86
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0

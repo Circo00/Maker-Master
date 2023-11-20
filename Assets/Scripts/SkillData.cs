@@ -32,13 +32,21 @@ public class SkillData
                     {
                         outputlist.Add( new NodeBlock("Melee", new List<NodeBlock>()) );
                     }
-                    else if (parent.GetChild(i).name.Contains("Ranged"))
+                    else if (parent.GetChild(i).name.Contains("Shoot"))
                     {
-                        outputlist.Add( new NodeBlock("Ranged", new List<NodeBlock>()) );
+                        outputlist.Add( new NodeBlock("Shoot", Constructor(parent.GetChild(i))));
                     }
                     else if (parent.GetChild(i).name.Contains("Repeat 10"))
                     {
                         outputlist.Add( new NodeBlock("Repeat 10", Constructor(parent.GetChild(i))) );
+                    }
+                    else if (parent.GetChild(i).name.Contains("Bullet"))
+                    {
+                        outputlist.Add(new NodeBlock("Bullet", new List<NodeBlock>() ));
+                    }
+                    else if (parent.GetChild(i).name.Contains("Bomb"))
+                    {
+                        outputlist.Add(new NodeBlock("Bomb", new List<NodeBlock>() ));
                     }
                 }
             }

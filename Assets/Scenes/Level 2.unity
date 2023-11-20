@@ -2042,8 +2042,8 @@ MonoBehaviour:
   numrays: 10
   attackdelay: 0.5
   shootpos: {fileID: 1117664350}
-  shootable: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba,
-    type: 3}
+  bullet: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba, type: 3}
+  bomb: {fileID: 1928289337247548569, guid: aed8f508380ce674dacc3437a705acff, type: 3}
   shootableforce: 1
   shootingoffset: 0.1
   firingrate: 0.05
@@ -3419,7 +3419,7 @@ PrefabInstance:
     - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
         type: 3}
       propertyPath: tutprogress
-      value: melee2intro
+      value: bombintro
       objectReference: {fileID: 0}
     - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
         type: 3}
@@ -3429,7 +3429,7 @@ PrefabInstance:
     - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
         type: 3}
       propertyPath: unlockskill
-      value: melee2
+      value: bomb
       objectReference: {fileID: 0}
     - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
         type: 3}

@@ -5,9 +5,11 @@ using UnityEngine;
 public class InitializeEquiptmentBuilder : MonoBehaviour
 {
     public GameObject melee1;
-    public GameObject melee2;
-    public GameObject ranged1;
-    public GameObject ranged2;
+    
+    public GameObject shoot;
+    public GameObject shoot2;
+    public GameObject bullet;
+    public GameObject bomb;
     public GameObject repeat10;
 
 
@@ -25,29 +27,37 @@ public class InitializeEquiptmentBuilder : MonoBehaviour
         {
             melee1.SetActive(false);
         }
-        if (unlockedblockdata.melee2)
+        if (unlockedblockdata.shoot2)
         {
-            melee2.SetActive(true);
+            shoot2.SetActive(true);
         }
         else
         {
-            melee2.SetActive(false);
+            shoot2.SetActive(false);
         }
-        if (unlockedblockdata.ranged1)
+        if (unlockedblockdata.shoot)
         {
-            ranged1.SetActive(true);
-        }
-        else
-        {
-            ranged1.SetActive(false);
-        }
-        if (unlockedblockdata.ranged2)
-        {
-            ranged2.SetActive(true);
+            shoot.SetActive(true);
         }
         else
         {
-            ranged2.SetActive(false);
+            shoot.SetActive(false);
+        }
+        if (unlockedblockdata.bullet)
+        {
+            bullet.SetActive(true);
+        }
+        else
+        {
+            bullet.SetActive(false);
+        }
+        if (unlockedblockdata.bomb)
+        {
+            bomb.SetActive(true);
+        }
+        else
+        {
+            bomb.SetActive(false);
         }
         if (unlockedblockdata.repeat10)
         {

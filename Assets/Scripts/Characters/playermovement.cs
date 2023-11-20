@@ -25,7 +25,9 @@ public class playermovement : MonoBehaviour
 
     [Header("Ranged Attack")]
     public Transform shootpos;
-    public GameObject shootable;
+    public GameObject bullet;
+    public GameObject bomb;
+    private GameObject shootable;
     private Rigidbody shootablerb;
     public float shootableforce = 1000f;
     public float shootingoffset = 10f;
@@ -64,7 +66,7 @@ public class playermovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         
-        shootablerb = shootable.GetComponent<Rigidbody>();
+        
         
         if(skillholder != null && skillholder.childCount != 0)
         {
@@ -92,8 +94,19 @@ public class playermovement : MonoBehaviour
             {
                 outputlist.Add(new MeleeAttackNode(animator, transform, attackrange, attackdamage, spreadangle, numrays, attackdelay));
             }
-            else if (nodeblock.name.Contains("Ranged"))
+            else if (nodeblock.name.Contains("Shoot"))
             {
+                
+                if(nodeblock.children[0].name.Contains("Bullet"))
+                {
+                    shootable = bullet;
+                    shootablerb = bullet.GetComponent<Rigidbody>();
+                }
+                if (nodeblock.children[0].name.Contains("Bomb"))
+                {
+                    shootable = bomb;
+                    shootablerb = bomb.GetComponent<Rigidbody>();
+                }
                 outputlist.Add(new RangedAttackNode(shootpos, shootable, shootablerb, shootableforce, shootingoffset));
                 machinegun.SetActive(true);
             }

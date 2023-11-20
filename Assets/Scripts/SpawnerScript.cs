@@ -8,7 +8,7 @@ public class SpawnerScript : MonoBehaviour
 
     public GameObject spawnobject;
     private int enemyCount;
-    private float previoustime = 0;
+    private float previoustime = 3;
     public float cooldowntime = 2f;
     public float enemylimit = 0;
     void Start()

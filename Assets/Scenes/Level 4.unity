@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 2d47a4b35847b004ba2738c86140e226,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: ae3c7c510e1abec43900a64c46688fd2,
     type: 2}
 --- !u!196 &4
@@ -6900,8 +6901,8 @@ MonoBehaviour:
   numrays: 10
   attackdelay: 0.5
   shootpos: {fileID: 1172689254}
-  shootable: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba,
-    type: 3}
+  bullet: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba, type: 3}
+  bomb: {fileID: 1928289337247548569, guid: aed8f508380ce674dacc3437a705acff, type: 3}
   shootableforce: 1
   shootingoffset: 0.1
   firingrate: 0.05

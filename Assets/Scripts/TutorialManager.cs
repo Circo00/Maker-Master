@@ -102,11 +102,11 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
             page++;
             ControlsTutorial();
         }
-        else if (currentscene == "Main Menu" && (tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro"))
+        else if (currentscene == "Main Menu" && (tutprogressdata == "shoot1intro" || tutprogressdata == "bombintro" || tutprogressdata == "shoot2intro" || tutprogressdata == "repeat10intro"))
         {
             PointToScene("equiptment");
         }
-        else if (currentscene == "Equiptment" && (tutprogressdata == "melee2intro" || tutprogressdata == "ranged1intro" || tutprogressdata == "ranged2intro" || tutprogressdata == "repeat10intro"))
+        else if (currentscene == "Equiptment" && (tutprogressdata == "shoot1intro" || tutprogressdata == "bombintro" || tutprogressdata == "shoot2intro" || tutprogressdata == "repeat10intro"))
         {
             Debug.Log("Explain block");
             ExplainBlock(tutprogressdata);
@@ -231,17 +231,17 @@ public class TutorialManager : MonoBehaviour, IPointerClickHandler
 
     public void ExplainBlock(string tutprog)
     {
-        if(tutprog == "melee2intro")
+        if(tutprog == "shoot1intro")
         {
-            DisplayNotification(0, 5, "This is the second melee block that you can use.");
+            DisplayNotification(0, 5, "This is the a shooting block, try attaching the bullet into the block and test.");
         }
-        if (tutprog == "ranged1intro")
+        if (tutprog == "bombintro")
         {
-            DisplayNotification(0, 5, "Calling this skill fires a bullet towards the enemies.");
+            DisplayNotification(0, 5, "Adding this bullet to the shooting block fires an explosive towards the enemies.");
         }
-        if(tutprog == "ranged2intro")
+        if(tutprog == "shoot2intro")
         {
-            DisplayNotification(0, 5, "This is the second ranged block that you can use.");
+            DisplayNotification(0, 5, "This is the second shooting block that you can use.");
         }
         if(tutprog == "repeat10intro")
         {

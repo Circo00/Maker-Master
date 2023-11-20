@@ -1922,7 +1922,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 301c428bd0ce9d0478dde6ec17c7c68d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8311,6 +8311,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
         type: 3}
+      propertyPath: tutprogress
+      value: shoot1intro
+      objectReference: {fileID: 0}
+    - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
+        type: 3}
+      propertyPath: unlockskill
+      value: shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 298185309131628731, guid: d708b23f61475c84d81f63a21dc121c6,
+        type: 3}
       propertyPath: tutorialmanager
       value: 
       objectReference: {fileID: 276091298}
@@ -8479,8 +8489,8 @@ MonoBehaviour:
   numrays: 10
   attackdelay: 0.5
   shootpos: {fileID: 726841053}
-  shootable: {fileID: 1137931103550323071, guid: e313cf549cb9e7d47a71e5da2e1dbfba,
-    type: 3}
+  bullet: {fileID: 0}
+  bomb: {fileID: 0}
   shootableforce: 1
   shootingoffset: 0.1
   firingrate: 0.05

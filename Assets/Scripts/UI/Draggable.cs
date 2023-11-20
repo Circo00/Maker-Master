@@ -31,11 +31,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         //Debug.Log("End Dragging");
         transform.SetParent(parentafterdrag);
-        if(parentafterdrag.name == "When Pressed" || parentafterdrag.name == "Repeat 10")
+        if(!transform.name.Contains("Bullet") && !transform.name.Contains("Bomb") && (parentafterdrag.name == "When Pressed" || parentafterdrag.name == "Repeat 10"))
         {
             audiosource.PlayOneShot(blockattach);
         }
-        
+        if ((transform.name.Contains("Bullet") || transform.name.Contains("Bomb")) && (parentafterdrag.name.Contains("Shoot")))
+        {
+            audiosource.PlayOneShot(blockattach);
+        }
+
         image.raycastTarget = true;
     }
 

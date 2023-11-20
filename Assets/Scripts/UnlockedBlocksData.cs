@@ -6,9 +6,10 @@ using UnityEngine;
 public class UnlockedBlocksData
 {
     public bool melee1 = true;
-    public bool melee2 = false;
-    public bool ranged1 = false;
-    public bool ranged2 = false;
+    public bool shoot2 = false;
+    public bool shoot = false;
+    public bool bullet = false;
+    public bool bomb = false;
     public bool repeat10 = false;
 
     public UnlockedBlocksData()
@@ -21,15 +22,20 @@ public class UnlockedBlocksData
     {
         if (blockname == "melee2")
         {
-            this.melee2 = true;
+            this.shoot2 = true;
         }
-        if (blockname == "ranged1")
+        if (blockname == "shoot")
         {
-            this.ranged1 = true;
+            this.shoot = true;
+            this.bullet = true;
         }
-        if (blockname == "ranged2")
+        if (blockname == "bomb")
         {
-            this.ranged2 = true;
+            this.bomb = true;
+        }
+        if (blockname == "shoot2")
+        {
+            this.shoot2 = true;
         }
         if (blockname == "repeat10")
         {
@@ -39,17 +45,21 @@ public class UnlockedBlocksData
 
     public bool GetUnlockedBlockData(string blockname)
     {
-        if (blockname == "melee2")
+        if (blockname == "shoot2")
         {
-            return this.melee2;
+            return this.shoot2;
         }
-        if (blockname == "ranged1")
+        if (blockname == "shoot")
         {
-            return this.ranged1;
+            return this.shoot;
         }
-        if (blockname == "ranged2")
+        if (blockname == "bullet")
         {
-            return this.ranged2;
+            return this.bullet;
+        }
+        if (blockname == "bomb")
+        {
+            return this.bomb;
         }
         if (blockname == "repeat10")
         {
